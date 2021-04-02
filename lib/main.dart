@@ -1,34 +1,28 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/rendering.dart';
+import 'package:liquid_ui/liquid_ui.dart';
+import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'PageProvider.dart';
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return LiquidApp(
+      materialApp: MaterialApp(
+        title: 'Liquid Shrink SideMenu',
+        theme: ThemeData.dark(),
+        home: MyHomePage(title: 'Liquid Ui Shrink SideMenus'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -37,68 +31,127 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
+  int option=1;
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    return SideMenu(
+      key: _sideMenuKey,
+      menu: buildMenu(),
+      // background: Color(0xff041955),
+      background: Colors.deepOrangeAccent,
+      type: SideMenuType.slideNRotate,
+      child: page(option,_sideMenuKey),
+    );
+  }
+
+  Widget buildMenu() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 50.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 22.0,
+                ),
+                SizedBox(height: 16.0),
+                LText(
+                  "\l.lead{Hello},\n\l.lead.bold{Yogesh}",
+                  baseStyle: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20.0),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=1;
+              });
+            },
+            leading: Icon(Icons.home, size: 20.0, color: Colors.white),
+            title: Text("Home"),
+            textColor: Colors.white,
+            dense: true,
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=2;
+              });
+            },
+            leading: Icon( Icons.credit_card_outlined, size: 20.0, color: Colors.white),
+            title: Text("Credit Cards"),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=3;
+              });
+            },
+            leading:
+                Icon( CupertinoIcons.creditcard_fill, size: 20.0, color: Colors.white),
+            title: Text("Debit Cards"),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=4;
+              });
+
+            },
+            leading: Icon(Icons.person_pin_sharp, size: 20.0, color: Colors.white),
+            title: Text("Identification Cards"),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=5;
+              });
+            },
+            leading: Icon(    Icons.perm_identity, size: 20.0, color: Colors.white),
+            title: Text("Organization Cards"),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+          LListItem(
+            backgroundColor: Colors.transparent,
+            onTap: () {},
+            leading: Icon( CupertinoIcons.rectangle_fill_on_rectangle_angled_fill, size: 20.0, color: Colors.white),
+            title: Text("Other Cards"),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
