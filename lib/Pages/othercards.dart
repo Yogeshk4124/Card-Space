@@ -6,19 +6,18 @@ import 'package:credit_card_slider/credit_card_widget.dart';
 import 'package:credit_card_slider/validity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class debitcard extends StatefulWidget {
+class othercards extends StatefulWidget {
   dynamic sideMenuKey;
 
-  debitcard({@required this.sideMenuKey});
+  othercards({@required this.sideMenuKey});
 
   @override
-  _debitcardState createState() => _debitcardState();
+  _othercardsState createState() => _othercardsState();
 }
 
-class _debitcardState extends State<debitcard> {
-  var _debitCards = [
+class _othercardsState extends State<othercards> {
+  var _othercards = [
     CreditCard(
       cardBackground: SolidColorCardBackground(Colors.red),
       cardNetworkType: CardNetworkType.visaBasic,
@@ -80,7 +79,7 @@ class _debitcardState extends State<debitcard> {
       cardNetworkType: CardNetworkType.rupay,
       cardHolderName: 'THE BORING DEVELOPER',
       cardNumber: '2434 2434 **** ****',
-      company: CardCompany.sbi,
+      company: CardCompany.sbi, cardBackground: SolidColorCardBackground(Colors.deepOrangeAccent),
     ),
   ];
 
@@ -112,7 +111,7 @@ class _debitcardState extends State<debitcard> {
             ),
             Expanded(
               child: CreditCardSlider(
-                _debitCards,repeatCards: RepeatCards.bothDirection,
+                _othercards,repeatCards: RepeatCards.bothDirection,
               ),
             ),
           ],

@@ -14,11 +14,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List l = [
-    'Credit Card',
-    'Debit Card',
-    'Identity Proof',
-    'Student ID',
-    'Bank Cards'
+    'Credit Cards',
+    'Debit Cards',
+    'Identification Cards',
+    'Organization Cards',
+    'Other Cards'
   ];
   List icons = [
     Icons.credit_card,
