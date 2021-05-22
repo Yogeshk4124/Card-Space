@@ -1,19 +1,22 @@
+import 'package:cardspace/cCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cardspace/nCardSlider.dart';
-import '../cCard.dart';
 import '../mCard.dart';
 
-class debitcard extends StatefulWidget {
+class fCard extends StatefulWidget {
   dynamic sideMenuKey;
 
-  debitcard({@required this.sideMenuKey});
+
+  fCard({@required this.sideMenuKey,
+
+  });
 
   @override
-  _debitcardState createState() => _debitcardState();
+  _fCardState createState() => _fCardState();
 }
 
-class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
+class _fCardState extends State<fCard> with TickerProviderStateMixin{
   List<cCard> debitCards ;
   @override
   void initState() {
@@ -74,12 +77,12 @@ class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
                           _state.openSideMenu();
                       }),
                 ),
-                Text("Debit Cards",style: TextStyle(fontSize: 16),)
+                Text("Credit Cards",style: TextStyle(fontSize: 16),)
               ],
             ),
             Expanded(
               child: CreditCardSlider(
-                debitCards,repeatCards: RepeatCards.none,
+                debitCards,repeatCards: RepeatCards.bothDirection,
               ),
             ),
           ],

@@ -32,7 +32,9 @@ dependencies:
   liquid_ui: ^1.0.0+9
   google_fonts: ^2.0.0
   credit_card_slider: ^1.0.1
-
+  flutter_credit_card: ^2.0.0
+  auto_size_text: ^2.1.0
+  flip_card: ^0.5.0
 
 dev_dependencies:
   flutter_test:

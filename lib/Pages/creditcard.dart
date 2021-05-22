@@ -6,6 +6,8 @@ import 'package:credit_card_slider/credit_card_widget.dart';
 import 'package:credit_card_slider/validity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+
 
 class creditcard extends StatefulWidget {
   dynamic sideMenuKey;
@@ -85,6 +87,7 @@ class _creditcardState extends State<creditcard> {
 
   @override
   Widget build(BuildContext context) {
+    CreditCardWidget n;
     return Scaffold(
       // backgroundColor: Color(0xff3450A1),
       backgroundColor: Colors.black,

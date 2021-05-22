@@ -15,16 +15,13 @@ class MyApp extends StatelessWidget {
       materialApp: MaterialApp(
         title: 'Liquid Shrink SideMenu',
         theme: ThemeData.dark(),
-        home: MyHomePage(title: 'Liquid Ui Shrink SideMenus'),
+        home: MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
