@@ -1,3 +1,4 @@
+import 'package:cardspace/Forms/creditCardForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Icons.person_pin_sharp,
     Icons.perm_identity,
     CupertinoIcons.rectangle_fill_on_rectangle_angled_fill
+  ];
+  List pages = [
+    creditCardForm(),
+    creditCardForm(),
+    creditCardForm(),
+    creditCardForm(),
+    creditCardForm(),
   ];
 
   @override
@@ -73,31 +81,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                 itemCount: l.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin:
-                        EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                    height: MediaQuery.of(context).size.height * 0.10,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      // color: Color(0xff041955),
-                      color: Colors.deepOrange,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                        ),
-                        Icon(icons[index]),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                        ),
-                        Text(
-                          '${l[index]}',
-                          style: GoogleFonts.oswald(
-                              fontSize: 16, letterSpacing: 0.5),
-                        ),
-                      ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>pages[index],));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 20, right: 20, top: 5, bottom: 5),
+                      height: MediaQuery.of(context).size.height * 0.10,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        // color: Color(0xff041955),
+                        color: Colors.deepOrange,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.1,
+                          ),
+                          Icon(icons[index]),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                          ),
+                          Text(
+                            '${l[index]}',
+                            style: GoogleFonts.oswald(
+                                fontSize: 16, letterSpacing: 0.5),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
