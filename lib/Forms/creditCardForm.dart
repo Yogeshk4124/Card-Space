@@ -17,13 +17,16 @@ class _creditCardFormState extends State<creditCardForm> {
   TextEditingController hName = new TextEditingController();
   TextEditingController cvv = new TextEditingController();
   CardCompany comName = CardCompany.sbi;
-  CardNetworkType cType=CardNetworkType.visaBasic;
+  CardNetworkType cType = CardNetworkType.visaBasic;
+
   @override
   Widget build(BuildContext context) {
     cNo.addListener(() {
       setState(() {});
     });
-    cvv.addListener(() {setState(() {});});
+    cvv.addListener(() {
+      setState(() {});
+    });
     hName.addListener(() {
       setState(() {});
     });
@@ -41,9 +44,12 @@ class _creditCardFormState extends State<creditCardForm> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.menu,
+                    IconButton(
+                      icon: Icon(Icons.arrow_back),
                       color: Colors.white,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                     ),
                     SizedBox(
                       width: 15,
@@ -162,7 +168,7 @@ class _creditCardFormState extends State<creditCardForm> {
                         }
                       });
                     },
-                    selectedItem: "Visa"),
+                    selectedItem: 'SbiCard'),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -172,9 +178,9 @@ class _creditCardFormState extends State<creditCardForm> {
                           showSelectedItem: true,
                           showSearchBox: true,
                           items: [
-                            "American Express",
-                            "Discover",
-                            "Mastercard",
+                            'American Express',
+                            'Discover',
+                            'Mastercard',
                             'Visa',
                             'Visa Basic',
                             'Rupay',
@@ -182,12 +188,36 @@ class _creditCardFormState extends State<creditCardForm> {
                           ],
                           label: "Card Type",
                           popupItemDisabled: (String s) => s.startsWith('I'),
-                          onChanged: (val){
-                            switch(val){
-                              
-                            }
+                          onChanged: (val) {
+                            setState(
+                              () {
+                                switch (val) {
+                                  case 'American Express':
+                                    cType = CardNetworkType.amex;
+                                    break;
+                                  case 'Discover':
+                                    cType = CardNetworkType.discover;
+                                    break;
+                                  case 'Mastercard':
+                                    cType = CardNetworkType.mastercard;
+                                    break;
+                                  case 'Visa':
+                                    cType = CardNetworkType.visa;
+                                    break;
+                                  case 'Visa Basic':
+                                    cType = CardNetworkType.visaBasic;
+                                    break;
+                                  case 'Rupay':
+                                    cType = CardNetworkType.rupay;
+                                    break;
+                                  case 'Other Brand':
+                                    cType = CardNetworkType.other;
+                                    break;
+                                }
+                              },
+                            );
                           },
-                          selectedItem: "Visa"),
+                          selectedItem: 'Visa'),
                     ),
                     SizedBox(
                       width: 15,

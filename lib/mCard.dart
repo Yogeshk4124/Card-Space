@@ -228,6 +228,14 @@ class CardNetworkType {
       )
   );
 
+  static CardNetworkType other = CardNetworkType(
+      Container(
+        height: 40,
+        width: 40,
+        child: Text('XYZ'),
+      ),
+  );
+
   final Widget widget;
 
   const CardNetworkType(this.widget);
