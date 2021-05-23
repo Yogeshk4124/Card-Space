@@ -210,6 +210,24 @@ class CardNetworkType {
     ),
   );
 
+  static CardNetworkType discover = CardNetworkType(
+      Image.asset(
+        'icons/discover.png',
+        height: 48,
+        width: 48,
+        package: 'flutter_credit_card',
+      )
+  );
+
+  static CardNetworkType amex = CardNetworkType(
+      Image.asset(
+        'icons/amex.png',
+        height: 48,
+        width: 48,
+        package: 'flutter_credit_card',
+      )
+  );
+
   final Widget widget;
 
   const CardNetworkType(this.widget);
