@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:credit_card_slider/card_company.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,98 +25,87 @@ class CardCompany {
 
   static CardCompany virgin = CardCompany(
     Image.asset(
-      'images/virgin.png',
+      'assets/cardslider/virgin.png',
       height: 40,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany sbi = CardCompany(
     Image.asset(
-      'images/sbi_card.gif',
+      'assets/cardslider/sbi_card.gif',
       height: 35,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany sbiCard = CardCompany(
     Image.asset(
-      'images/sbi.png',
+      'assets/cardslider/sbi.png',
       height: 35,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany kotak = CardCompany(
     Image.asset(
-      'images/kotak_logo.png',
+      'assets/cardslider/kotak_logo.png',
       height: 35,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany axisBank = CardCompany(
     Image.asset(
-      'images/axis_bank_logo.png',
+      'assets/cardslider/axis_bank_logo.png',
       height: 35,
-      package: 'credit_card_slider',
+
     ),
   );
 
   static CardCompany axisBankWhite = CardCompany(
     Image.asset(
-      'images/axis_bank_logo.png',
+      'assets/cardslider/axis_bank_logo.png',
       height: 35,
       color: Colors.white,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany citiBank = CardCompany(
     Image.asset(
-      'images/citibank_logo.png',
+      'assets/cardslider/citibank_logo.png',
       height: 25,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany hdfc = CardCompany(
     Image.asset(
-      'images/hdfc_logo.png',
+      'assets/cardslider/hdfc_logo.png',
       height: 25,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany hsbc = CardCompany(
     Image.asset(
-      'images/hsbc_logo.png',
+      'assets/cardslider/hsbc_logo.png',
       height: 30,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany icici = CardCompany(
     Image.asset(
-      'images/icici_bank_logo.png',
+      'assets/cardslider/icici_bank_logo.png',
       height: 25,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany indusland = CardCompany(
     Image.asset(
-      'images/indusland.png',
+      'assets/cardslider/indusland.png',
       height: 15,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardCompany yesBank = CardCompany(
     Image.asset(
-      'images/yes_bank_logo.png',
+      'assets/cardslider/yes_bank_logo.png',
       height: 35,
-      package: 'credit_card_slider',
     ),
   );
 
@@ -180,51 +168,45 @@ class ImageCardBackground extends CardBackground {
 class CardNetworkType {
   static CardNetworkType visa = CardNetworkType(
     Image.asset(
-      'images/visa.jpeg',
+      'assets/cardslider/visa.jpeg',
       height: 35,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardNetworkType mastercard = CardNetworkType(
     Image.asset(
-      'images/mastercard.png',
+      'assets/cardslider/mastercard.png',
       height: 40,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardNetworkType visaBasic = CardNetworkType(
     Image.asset(
-      'images/visa_basic.png',
+      'assets/cardslider/visa_basic.png',
       height: 20,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardNetworkType rupay = CardNetworkType(
     Image.asset(
-      'images/rupay_logo.png',
+      'assets/cardslider/rupay_logo.png',
       height: 40,
-      package: 'credit_card_slider',
     ),
   );
 
   static CardNetworkType discover = CardNetworkType(
       Image.asset(
-        'icons/discover.png',
+        'assets/flutter/discover.png',
         height: 48,
         width: 48,
-        package: 'flutter_credit_card',
       )
   );
 
   static CardNetworkType amex = CardNetworkType(
       Image.asset(
-        'icons/amex.png',
+        'assets/flutter/amex.png',
         height: 48,
         width: 48,
-        package: 'flutter_credit_card',
       )
   );
 

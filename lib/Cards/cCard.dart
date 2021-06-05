@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'mCard.dart';
+import '../CardClasses/mCard.dart';
 class cCard extends StatefulWidget {
   final CardBackground cardBackground;
   final CardNetworkType cardNetworkType;

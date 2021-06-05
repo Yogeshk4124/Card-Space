@@ -1,7 +1,6 @@
-import 'package:cardspace/Pages/HomeScreen.dart';
-import 'package:cardspace/Pages/creditcard.dart';
-import 'package:cardspace/Pages/debitcard.dart';
-import 'package:cardspace/fCard.dart';
+import 'package:cardspace/SliderPages/HomeScreen.dart';
+import 'package:cardspace/SliderPages/creditcard.dart';
+import 'package:cardspace/SliderPages/debitcard.dart';
 import 'package:flutter/cupertino.dart';
 
 Widget page(int x, dynamic sideMenuKey) {
@@ -16,7 +15,7 @@ Widget page(int x, dynamic sideMenuKey) {
       return debitcard(sideMenuKey: sideMenuKey);
       break;
     case 4:
-      return fCard(sideMenuKey: sideMenuKey);
+      return debitcard(sideMenuKey: sideMenuKey);
       break;
     // case 4:return idcard(sideMenuKey: sideMenuKey);
     //   break;

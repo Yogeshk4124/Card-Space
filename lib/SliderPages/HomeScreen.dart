@@ -1,4 +1,5 @@
 import 'package:cardspace/Forms/creditCardForm.dart';
+import 'package:cardspace/Forms/debitCardForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,16 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   List pages = [
     creditCardForm(),
-    creditCardForm(),
-    creditCardForm(),
-    creditCardForm(),
-    creditCardForm(),
+    debitCardForm(),
+    debitCardForm(),
+    debitCardForm(),
+    debitCardForm(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xff3450A1),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(

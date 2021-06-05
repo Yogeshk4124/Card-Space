@@ -6,12 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import '../CardClasses/mCard.dart';
 
-class creditCardForm extends StatefulWidget {
+class debitCardForm extends StatefulWidget {
   @override
-  _creditCardFormState createState() => _creditCardFormState();
+  _debitCardFormState createState() => _debitCardFormState();
 }
 
-class _creditCardFormState extends State<creditCardForm> {
+class _debitCardFormState extends State<debitCardForm> {
   String validth = "";
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
@@ -55,7 +55,7 @@ class _creditCardFormState extends State<creditCardForm> {
                       width: 15,
                     ),
                     Text(
-                      'Add Credit Card',
+                      'Add Debit Card',
                       style: GoogleFonts.roboto(fontSize: 22),
                     )
                   ],
@@ -63,7 +63,7 @@ class _creditCardFormState extends State<creditCardForm> {
                 Center(
                   child: cCard(
                     cardBackground:
-                        SolidColorCardBackground(Colors.white.withOpacity(0.6)),
+                    SolidColorCardBackground(Colors.white.withOpacity(0.6)),
                     cardNetworkType: cType,
                     cardHolderName: hName.text,
                     cardNumber: cNo.text,
@@ -190,7 +190,7 @@ class _creditCardFormState extends State<creditCardForm> {
                           popupItemDisabled: (String s) => s.startsWith('I'),
                           onChanged: (val) {
                             setState(
-                              () {
+                                  () {
                                 switch (val) {
                                   case 'American Express':
                                     cType = CardNetworkType.amex;
@@ -271,12 +271,12 @@ class _creditCardFormState extends State<creditCardForm> {
                         onTap: () {
                           print('clicked');
                           showDatePicker(
-                                  currentDate: DateTime.now(),
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.utc(2000),
-                                  lastDate: DateTime.utc(2050),
-                                  context: context,
-                                  initialDatePickerMode: DatePickerMode.year)
+                              currentDate: DateTime.now(),
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.utc(2000),
+                              lastDate: DateTime.utc(2050),
+                              context: context,
+                              initialDatePickerMode: DatePickerMode.year)
                               .then((value) {
                             setState(() {
                               validth = value.month.toString() +
@@ -312,12 +312,12 @@ class _creditCardFormState extends State<creditCardForm> {
                         onTap: () {
                           print('clicked');
                           showDatePicker(
-                                  currentDate: DateTime.now(),
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.utc(2000),
-                                  lastDate: DateTime.utc(2050),
-                                  context: context,
-                                  initialDatePickerMode: DatePickerMode.year)
+                              currentDate: DateTime.now(),
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.utc(2000),
+                              lastDate: DateTime.utc(2050),
+                              context: context,
+                              initialDatePickerMode: DatePickerMode.year)
                               .then((value) {
                             setState(() {
                               validth = value.month.toString() +

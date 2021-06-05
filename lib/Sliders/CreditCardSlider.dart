@@ -1,11 +1,7 @@
 library credit_card_slider;
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
-import 'mCard.dart';
-
+import '../Cards/cCard.dart';
 typedef void OnCardClicked(int index);
 
 enum RepeatCards { down, bothDirection, none }
@@ -16,8 +12,7 @@ enum RepeatCards { down, bothDirection, none }
 ///Use [RepeatCards.down] for repeating cards only down
 class CreditCardSlider extends StatefulWidget {
   PageController _pageController;
-
-  final List<CreditCardWidget> creditCards;
+  final List<cCard> creditCards;
   final double percentOfUpperCard;
   final OnCardClicked onCardClicked;
   final RepeatCards repeatCards;
@@ -103,7 +98,6 @@ class _CreditCardSliderState extends State<CreditCardSlider> {
             value = pi / 2;
           }
         }
-
         return Center(
           child: Transform(
             transform: Matrix4.identity()
@@ -114,27 +108,7 @@ class _CreditCardSliderState extends State<CreditCardSlider> {
           ),
         );
       },
-      child: GestureDetector(
-        onTap: () {
-          print('i am clicked:'+index.toString());
-          setState(() {
-            if(widget.creditCards[index%length].showBackView) {
-              print('print 1');
-
-              widget.creditCards[index % length].showBackView=true;
-              widget.creditCards[index % length].Acontroller.forward();
-            }else {
-              print('print 2');
-              widget.creditCards[index % length].Acontroller.reverse();
-            }
-          });
-
-          // creditCards[index%length].showBackView=!creditCards[index%length].showBackView;
-
-          // onCardClicked?.call(index % length);
-        },
-        child: widget.creditCards[index % length],
-      ),
+      child:  widget.creditCards[index % length],
     );
   }
 }
