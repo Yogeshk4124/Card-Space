@@ -461,7 +461,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
       alignment: Alignment.centerLeft,
       child: Image.asset(
-        'images/chip.png',
+        'assets/cardslider/chip.png',
         height: 25,
         package: 'credit_card_slider',
       ),

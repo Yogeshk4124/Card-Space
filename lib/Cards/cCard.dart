@@ -1,14 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
-// import 'package:credit_card_slider/card_background.dart';
-// import 'package:credit_card_slider/card_network_type.dart';
-// import 'package:credit_card_slider/validity.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:credit_card_slider/card_company.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../CardClasses/mCard.dart';
+
 class cCard extends StatefulWidget {
   final CardBackground cardBackground;
   final CardNetworkType cardNetworkType;
@@ -55,25 +52,16 @@ class cCard extends StatefulWidget {
 }
 
 class _cCardState extends State<cCard> {
-
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final Orientation orientation = MediaQuery
-        .of(context)
-        .orientation;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final Orientation orientation = MediaQuery.of(context).orientation;
     return FlipCard(
       speed: 500,
       direction: FlipDirection.HORIZONTAL, // default
       front: Container(
-        child: buildFrontContainer(width,height, context, orientation),
+        child: buildFrontContainer(width, height, context, orientation),
       ),
       back: Container(
         child: buildBackContainer(width, height, context, orientation),
@@ -182,9 +170,8 @@ class _cCardState extends State<cCard> {
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
       alignment: Alignment.centerLeft,
       child: Image.asset(
-        'images/chip.png',
+        'assets/cardslider/chip.png',
         height: 25,
-        package: 'credit_card_slider',
       ),
     );
   }
@@ -197,9 +184,7 @@ class _cCardState extends State<cCard> {
       alignment: Alignment.centerLeft,
       child: Text(
         widget.cardNumber,
-        style: TextStyle(
-          fontFamily: 'creditcard',
-          package: 'credit_card_slider',
+        style: GoogleFonts.quantico(
           color: widget.numberColor,
           fontSize: 11,
         ),
@@ -228,11 +213,9 @@ class _cCardState extends State<cCard> {
                   SizedBox(height: 2),
                   Text(
                     '${widget.validity.validFromMonth.toString().padLeft(2, '0')}/${widget.validity.validFromYear.toString().padLeft(2, '0')}',
-                    style: TextStyle(
+                    style: GoogleFonts.quantico(
+                      fontSize: 11,
                       color: widget.validityColor,
-                      fontSize: 10,
-                      fontFamily: 'creditcard',
-                      package: 'credit_card_slider',
                     ),
                   ),
                 ],
@@ -254,11 +237,9 @@ class _cCardState extends State<cCard> {
             SizedBox(height: 2),
             Text(
               '${widget.validity.validThruMonth.toString().padLeft(2, '0')}/${widget.validity.validThruYear.toString().padLeft(2, '0')}',
-              style: TextStyle(
+              style: GoogleFonts.quantico(
+                fontSize: 11,
                 color: widget.validityColor,
-                fontSize: 10,
-                fontFamily: 'creditcard',
-                package: 'credit_card_slider',
               ),
             ),
           ],
@@ -278,11 +259,9 @@ class _cCardState extends State<cCard> {
                   widget.cardHolderName.toUpperCase(),
                   maxLines: 1,
                   minFontSize: 8,
-                  style: TextStyle(
-                    fontFamily: 'creditcard',
-                    color: widget.cardHolderNameColor,
-                    package: 'credit_card_slider',
-                  ),
+                  style: GoogleFonts.quantico(
+                  color: widget.cardHolderNameColor,
+                ),
                 ),
               )
             : SizedBox.shrink(),
@@ -335,10 +314,8 @@ class _cCardState extends State<cCard> {
                 widget.cardHolderName.toUpperCase(),
                 maxLines: 1,
                 minFontSize: 8,
-                style: TextStyle(
-                  fontFamily: 'creditcard',
+                style: GoogleFonts.quantico(
                   color: widget.cardHolderNameColor,
-                  package: 'credit_card_slider',
                 ),
               )
             : SizedBox.shrink(),

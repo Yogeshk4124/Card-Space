@@ -1,4 +1,4 @@
-import 'package:cardspace/SliderPages/HomeScreen.dart';
+import 'package:cardspace/Navigation/HomeScreen.dart';
 import 'package:cardspace/SliderPages/creditcard.dart';
 import 'package:cardspace/SliderPages/debitcard.dart';
 import 'package:flutter/cupertino.dart';
