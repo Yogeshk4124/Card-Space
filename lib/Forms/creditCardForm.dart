@@ -13,6 +13,8 @@ class creditCardForm extends StatefulWidget {
 
 class _creditCardFormState extends State<creditCardForm> {
   String validth = "";
+  int colorType = 0;
+  var cardBg;
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
   TextEditingController cvv = new TextEditingController();
@@ -30,6 +32,7 @@ class _creditCardFormState extends State<creditCardForm> {
     hName.addListener(() {
       setState(() {});
     });
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -62,8 +65,9 @@ class _creditCardFormState extends State<creditCardForm> {
                 ),
                 Center(
                   child: cCard(
-                    cardBackground:
-                        SolidColorCardBackground(Colors.white.withOpacity(0.6)),
+                    // cardBackground:
+                    //     SolidColorCardBackground(Colors.white.withOpacity(0.6)),
+                    cardBackground: cardBg,
                     cardNetworkType: cType,
                     cardHolderName: hName.text,
                     cardNumber: cNo.text,
@@ -350,6 +354,73 @@ class _creditCardFormState extends State<creditCardForm> {
                     labelStyle: TextStyle(color: Colors.white),
                   ),
                 ),
+                DropdownSearch<String>(
+                    mode: Mode.DIALOG,
+                    showSelectedItem: true,
+                    showSearchBox: true,
+                    items: ['Solid', 'Linear', 'Image'],
+                    label: "Card Type",
+                    popupItemDisabled: (String s) => s.startsWith('I'),
+                    onChanged: (val) {
+                      setState(
+                        () {
+                          switch (val) {
+                            case 'Solid':
+                              colorType = 1;
+                              setState(() {});
+                              break;
+                            case 'Linear':
+                              colorType = 2;
+                              setState(() {});
+                              break;
+                            case 'Image':
+                              colorType = 3;
+                              setState(() {});
+                              break;
+                          }
+                        },
+                      );
+                    },
+                    selectedItem: 'Solid'),
+                if (colorType == 1)
+                  DropdownSearch<String>(
+                    
+                      mode: Mode.DIALOG,
+                      showSelectedItem: true,
+                      showSearchBox: true,
+                      items: [
+                        'Red',
+                        'White',
+                        'Pink',
+                        'Yellow',
+                      ],
+                      label: "Card Type",
+                      popupItemDisabled: (String s) => s.startsWith('I'),
+                      onChanged: (val) {
+                        setState(
+                          () {
+                            switch (val) {
+                              case 'Red':
+                                cardBg = new SolidColorCardBackground(Colors.red);
+                                setState(() {});
+                                break;
+                              case 'White':
+                                cardBg = new SolidColorCardBackground(Colors.white);
+                                setState(() {});
+                                break;
+                              case 'Pink':
+                                cardBg = new SolidColorCardBackground(Colors.pink);
+                                setState(() {});
+                                break;
+                              case 'Yellow':
+                                cardBg = new SolidColorCardBackground(Colors.yellow);
+                                setState(() {});
+                                break;
+                            }
+                          },
+                        );
+                      },
+                      selectedItem: 'Red'),
                 GestureDetector(
                   onTap: () {},
                   child: Container(

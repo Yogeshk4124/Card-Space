@@ -20,7 +20,8 @@ class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
     super.initState();
     debitCards=[
       cCard(
-        cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
+        // cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
+        cardBackground: GradientCardBackground(LinearGradient(colors: [Colors.red,Colors.white])),
         cardNetworkType: CardNetworkType.visaBasic,
         cardHolderName: 'The boring developer',
         cardNumber: '1234 1234 1234 1234',

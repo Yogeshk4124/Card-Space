@@ -160,7 +160,7 @@ class _cCardState extends State<cCard> {
     } else {
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
-        color: Colors.black,
+        color: Colors.deepOrange,
       );
     }
   }

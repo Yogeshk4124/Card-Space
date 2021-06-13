@@ -39,7 +39,7 @@ class _identificationCardsFormState extends State<identificationCardsForm> {
                 )
               ],
             ),
-            Expanded(child:Icon(CupertinoIcons.burn,size:200,color: Colors.red,)),
+            Expanded(child:Icon(CupertinoIcons.burn,size:MediaQuery.of(context).size.width*0.5,color: Colors.red,)),
             Expanded(child:Text('Feature not implemented yet',style: TextStyle(fontSize: 20),)),
           ],
         ),

@@ -18,38 +18,6 @@ class _organizationcardsState extends State<organizationcards> {
   @override
   void initState() {
     super.initState();
-    debitCards=[
-      cCard(
-        cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-        cardNetworkType: CardNetworkType.visaBasic,
-        cardHolderName: 'The boring developer',
-        cardNumber: '1234 1234 1234 1234',
-        company: CardCompany.yesBank,
-        validity: Validity(
-          validThruMonth: 1,
-          validThruYear: 21,
-          validFromMonth: 1,
-          validFromYear: 16,
-        ),
-        showBackView: false,
-        cvvCode: '1232',
-      ),
-      cCard(
-        cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-        cardNetworkType: CardNetworkType.visaBasic,
-        cardHolderName: 'The boring developer',
-        cardNumber: '1234 1234 1234 1234',
-        company: CardCompany.yesBank,
-        validity: Validity(
-          validThruMonth: 1,
-          validThruYear: 21,
-          validFromMonth: 1,
-          validFromYear: 16,
-        ),
-        showBackView: false,
-        cvvCode: '1232',
-      ),
-    ];
   }
   @override
   Widget build(BuildContext context) {
@@ -74,14 +42,12 @@ class _organizationcardsState extends State<organizationcards> {
                           _state.openSideMenu();
                       }),
                 ),
-                Text("Debit Cards",style: TextStyle(fontSize: 16),)
+                Text("Organization Cards",style: TextStyle(fontSize: 16),)
               ],
             ),
-            Expanded(
-              child: CreditCardSlider(
-                debitCards,repeatCards: RepeatCards.none,
-              ),
-            ),
+            Expanded(child:Icon(CupertinoIcons.burn,size:MediaQuery.of(context).size.width*0.5,color: Colors.red,)),
+            Expanded(child:Text('Feature not implemented yet',style: TextStyle(fontSize: 20),)),
+
           ],
         ),
       ),

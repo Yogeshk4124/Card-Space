@@ -124,7 +124,12 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           LListItem(
             backgroundColor: Colors.transparent,
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                _sideMenuKey.currentState.closeSideMenu();
+                option=6;
+              });
+            },
             leading: Icon( CupertinoIcons.rectangle_fill_on_rectangle_angled_fill, size: 20.0, color: Colors.white),
             title: Text("Other Cards"),
             textColor: Colors.white,
