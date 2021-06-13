@@ -1,9 +1,11 @@
 import 'package:cardspace/Forms/creditCardForm.dart';
 import 'package:cardspace/Forms/debitCardForm.dart';
+import 'package:cardspace/Forms/identificationCardsForm.dart';
+import 'package:cardspace/Forms/organizationCardForm.dart';
+import 'package:cardspace/Forms/otherCardForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
 class HomeScreen extends StatefulWidget {
   dynamic sideMenuKey;
@@ -32,9 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List pages = [
     creditCardForm(),
     debitCardForm(),
-    debitCardForm(),
-    debitCardForm(),
-    debitCardForm(),
+    identificationCardsForm(),
+    organizationCardForm(),
+    otherCardForm(),
   ];
 
   @override
