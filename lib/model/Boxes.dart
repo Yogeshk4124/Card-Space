@@ -1,10 +1,8 @@
-import 'package:cardspace/Cards/cCard.dart';
 import 'package:hive/hive.dart';
 
 import 'card.dart';
 
-
-class Boxes{
-  static Box<card>getCards()=>
-      Hive.box<card>('cards');
+class Boxes {
+  static Box<card> getCreditCards() => Hive.box<card>('CreditCards');
+  static Box<card> getDebitCards() => Hive.box<card>('DebitCards');
 }

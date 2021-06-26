@@ -8,6 +8,7 @@ import 'package:cardspace/model/Boxes.dart';
 import 'package:cardspace/model/card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -331,7 +332,7 @@ class _creditcardState extends State<creditcard> {
             // ),
             Expanded(
               child: ValueListenableBuilder<Box<card>>(
-                valueListenable: Boxes.getCards().listenable(),
+                valueListenable: Boxes.getCreditCards().listenable(),
                 builder: (context, box, _) {
                   final cards = box.values.toList().cast<card>();
                   if (cards.length > 0) {
@@ -341,10 +342,22 @@ class _creditcardState extends State<creditcard> {
                   // return Container(child: Text(cards[1].cardNumber+"Hello"),color: Colors.pink,width: 200,height: 10,);
                   else
                     return Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.red,
-                      child: Text('Color'),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            CupertinoIcons.square_stack_3d_up_slash_fill,
+                            size: MediaQuery.of(context).size.width * .30,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'No Credit Card Found',
+                            style: GoogleFonts.courierPrime(fontSize: 18),
+                          ),
+                        ],
+                      ),
                     );
                 },
               ),

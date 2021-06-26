@@ -1,12 +1,13 @@
-import 'package:cardspace/Cards/cCard.dart';
 import 'package:cardspace/model/card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:liquid_ui/liquid_ui.dart';
+
 import 'SplashScreen.dart';
-Future main() async{
+
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   // Hive.registerAdapter(CardCompanyAdapter());
@@ -16,7 +17,8 @@ Future main() async{
   Hive.registerAdapter(cardAdapter());
   // flutter packages pub run build_runner build
   // await Hive.openBox<cCard>('cards');
-  await Hive.openBox<card>('cards');
+  await Hive.openBox<card>('DebitCards');
+  await Hive.openBox<card>('CreditCards');
   runApp(MyApp());
 }
 
@@ -32,4 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

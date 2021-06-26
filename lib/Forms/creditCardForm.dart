@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multiselect/multiselect.dart';
+import 'package:toast/toast.dart';
 
 import '../CardClasses/mCard.dart';
 import '../model/Boxes.dart';
@@ -28,11 +29,7 @@ class _creditCardFormState extends State<creditCardForm> {
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
   TextEditingController cvv = new TextEditingController();
-
-  // CardCompany comName = CardCompany.sbi;
   CardCompany comName;
-
-  // CardNetworkType cType = CardNetworkType.visaBasic;
   CardNetworkType cType;
   List<String> selected = [];
   File _image;
@@ -41,8 +38,9 @@ class _creditCardFormState extends State<creditCardForm> {
       validFromMonth = DateTime.now().month,
       validToYear = DateTime.now().year + 15,
       validToMonth = DateTime.now().month;
-  String trying;
-
+  String db_companyCard;
+  String db_CardType;
+  String db_SolidColor = "Red";
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
@@ -57,142 +55,6 @@ class _creditCardFormState extends State<creditCardForm> {
         print('No image selected.');
       }
     });
-  }
-
-  Widget getCardCompany(String val) {
-    trying = val;
-    switch (val) {
-      case "American Express":
-        return Text(
-          'AMERICAN \nEXPRESS',
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-            fontSize: 16,
-          ),
-        );
-        break;
-      case 'Virgin':
-        return Image.asset(
-          'assets/cardslider/virgin.png',
-          height: 40,
-        );
-        break;
-      case 'SbiCard':
-        return Image.asset(
-          'assets/cardslider/sbi_card.gif',
-          height: 35,
-        );
-        break;
-      case 'SBI':
-        return Image.asset(
-          'assets/cardslider/sbi.png',
-          height: 35,
-        );
-        break;
-      case 'Kotak':
-        return Image.asset(
-          'assets/cardslider/kotak_logo.png',
-          height: 35,
-        );
-        break;
-      case 'Axis Bank':
-        return Image.asset(
-          'assets/cardslider/axis_bank_logo.png',
-          height: 35,
-        );
-        break;
-      case 'Axis Bank White':
-        return Image.asset(
-          'assets/cardslider/axis_bank_logo.png',
-          height: 35,
-          color: Colors.white,
-        );
-        break;
-      case 'CitiBank':
-        return Image.asset(
-          'assets/cardslider/citibank_logo.png',
-          height: 25,
-        );
-        break;
-      case 'HDFC':
-        return Image.asset(
-          'assets/cardslider/hdfc_logo.png',
-          height: 25,
-        );
-        break;
-      case 'HSBC':
-        return Image.asset(
-          'assets/cardslider/hsbc_logo.png',
-          height: 30,
-        );
-        break;
-      case 'icici':
-        return Image.asset(
-          'assets/cardslider/icici_bank_logo.png',
-          height: 25,
-        );
-        break;
-      case 'indusland':
-        return Image.asset(
-          'assets/cardslider/indusland.png',
-          height: 15,
-        );
-        break;
-      case 'YesBank':
-        return Image.asset(
-          'assets/cardslider/yes_bank_logo.png',
-          height: 35,
-        );
-        break;
-    }
-  }
-
-  Widget getNetworkType(String val) {
-    switch (val) {
-      case 'American Express':
-        return Image.asset(
-          'assets/flutter/amex.png',
-          height: 48,
-          width: 48,
-        );
-        break;
-      case 'Discover':
-        return Image.asset(
-          'assets/flutter/discover.png',
-          height: 48,
-          width: 48,
-        );
-        break;
-      case 'Mastercard':
-        return Image.asset(
-          'assets/cardslider/mastercard.png',
-          height: 40,
-        );
-        break;
-      case 'Visa':
-        return Image.asset(
-          'assets/cardslider/visa.jpeg',
-          height: 35,
-        );
-        break;
-      case 'Visa Basic':
-        return Image.asset(
-          'assets/cardslider/visa_basic.png',
-          height: 20,
-        );
-        break;
-      case 'Rupay':
-        return Image.asset(
-          'assets/cardslider/rupay_logo.png',
-          height: 40,
-        );
-        break;
-      case 'Other Brand':
-        return Container(height: 40, width: 40, child: Text('XYZ'));
-        break;
-    }
   }
 
   @override
@@ -288,74 +150,76 @@ class _creditCardFormState extends State<creditCardForm> {
                   height: 10,
                 ),
                 DropdownSearch<String>(
-                    mode: Mode.DIALOG,
-                    showSelectedItem: true,
-                    showSearchBox: true,
-                    items: [
-                      'American Express',
-                      'Axis Bank',
-                      'Axis Bank White',
-                      'icici',
-                      'CitiBank',
-                      'HDFC',
-                      'HSBC',
-                      'indusland',
-                      'Kotak',
-                      'SBI',
-                      'Virgin',
-                      'SbiCard',
-                      'YesBank'
-                    ],
-                    label: "Company Name",
-                    popupItemDisabled: (String s) => s.startsWith('I'),
-                    onChanged: (val) {
-                      setState(() {
-                        // comName = CardCompany(widget: getCardCompany(val));
-                        switch (val) {
-                          case "American Express":
-                            comName = CardCompany.americanExpress;
-                            break;
-                          case "Axis Bank":
-                            comName = CardCompany.axisBank;
-                            break;
-                          case "Axis Bank White":
-                            comName = CardCompany.axisBankWhite;
-                            break;
-                          case 'CitiBank':
-                            comName = CardCompany.citiBank;
-                            break;
-                          case 'HDFC':
-                            comName = CardCompany.hdfc;
-                            break;
-                          case "HSBC":
-                            comName = CardCompany.hsbc;
-                            break;
-                          case 'icici':
-                            comName = CardCompany.icici;
-                            break;
-                          case 'indusland':
-                            print('here');
-                            comName = CardCompany.indusland;
-                            break;
-                          case 'Kotak':
-                            comName = CardCompany.kotak;
-                            break;
-                          case 'SBI':
-                            comName = CardCompany.sbi;
-                            break;
-                          case 'Virgin':
-                            comName = CardCompany.virgin;
-                            break;
-                          case 'SbiCard':
-                            comName = CardCompany.sbiCard;
-                            break;
-                          case 'YesBank':
-                            comName = CardCompany.yesBank;
-                            break;
-                        }
-                      });
-                    },
-                    selectedItem: 'SbiCard'),
+                  mode: Mode.DIALOG,
+                  showSelectedItem: true,
+                  showSearchBox: true,
+                  items: [
+                    'American Express',
+                    'Axis Bank',
+                    'Axis Bank White',
+                    'icici',
+                    'CitiBank',
+                    'HDFC',
+                    'HSBC',
+                    'indusland',
+                    'Kotak',
+                    'SBI',
+                    'Virgin',
+                    'SbiCard',
+                    'YesBank'
+                  ],
+                  label: "Company Name",
+                  selectedItem: 'Select Card Company',
+                  onChanged: (val) {
+                    setState(() {
+                      // comName = CardCompany(widget: getCardCompany(val));
+                      db_companyCard = val;
+
+                      switch (val) {
+                        case "American Express":
+                          comName = CardCompany.americanExpress;
+                          break;
+                        case "Axis Bank":
+                          comName = CardCompany.axisBank;
+                          break;
+                        case "Axis Bank White":
+                          comName = CardCompany.axisBankWhite;
+                          break;
+                        case 'CitiBank':
+                          comName = CardCompany.citiBank;
+                          break;
+                        case 'HDFC':
+                          comName = CardCompany.hdfc;
+                          break;
+                        case "HSBC":
+                          comName = CardCompany.hsbc;
+                          break;
+                        case 'icici':
+                          comName = CardCompany.icici;
+                          break;
+                        case 'indusland':
+                          print('here');
+                          comName = CardCompany.indusland;
+                          break;
+                        case 'Kotak':
+                          comName = CardCompany.kotak;
+                          break;
+                        case 'SBI':
+                          comName = CardCompany.sbi;
+                          break;
+                        case 'Virgin':
+                          comName = CardCompany.virgin;
+                          break;
+                        case 'SbiCard':
+                          comName = CardCompany.sbiCard;
+                          break;
+                        case 'YesBank':
+                          comName = CardCompany.yesBank;
+                          break;
+                      }
+                    });
+                  },
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -367,7 +231,7 @@ class _creditCardFormState extends State<creditCardForm> {
                         mode: Mode.DIALOG,
                         showSelectedItem: true,
                         showSearchBox: true,
-                        selectedItem: 'Visa',
+                        selectedItem: 'Select Card Type',
                         items: [
                           'American Express',
                           'Discover',
@@ -381,6 +245,7 @@ class _creditCardFormState extends State<creditCardForm> {
                         onChanged: (val) {
                           // cType =
                           // CardNetworkType(widget: getNetworkType('amex'));
+                          db_CardType = val;
                           setState(() {
                             switch (val) {
                               case 'American Express':
@@ -552,35 +417,36 @@ class _creditCardFormState extends State<creditCardForm> {
                   height: 10,
                 ),
                 DropdownSearch<String>(
-                    mode: Mode.DIALOG,
-                    showSelectedItem: true,
-                    showSearchBox: true,
-                    items: ['Solid', 'Linear', 'Image'],
-                    label: "Card Type",
-                    onChanged: (val) {
-                      setState(
-                        () {
-                          switch (val) {
-                            case 'Solid':
-                              colorType = 1;
-                              _isVisible = 1;
-                              setState(() {});
-                              break;
-                            case 'Linear':
-                              colorType = 2;
-                              _isVisible = 2;
-                              setState(() {});
-                              break;
-                            case 'Image':
-                              colorType = 3;
-                              _isVisible = 3;
-                              setState(() {});
-                              break;
-                          }
-                        },
-                      );
-                    },
-                    selectedItem: 'Solid'),
+                  mode: Mode.DIALOG,
+                  showSelectedItem: true,
+                  showSearchBox: true,
+                  items: ['Solid', 'Linear', 'Image'],
+                  label: "Card Background",
+                  onChanged: (val) {
+                    setState(
+                      () {
+                        switch (val) {
+                          case 'Solid':
+                            colorType = 1;
+                            _isVisible = 1;
+                            setState(() {});
+                            break;
+                          case 'Linear':
+                            colorType = 2;
+                            _isVisible = 2;
+                            setState(() {});
+                            break;
+                          case 'Image':
+                            colorType = 3;
+                            _isVisible = 3;
+                            setState(() {});
+                            break;
+                        }
+                      },
+                    );
+                  },
+                  selectedItem: 'Select Background Type',
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -596,9 +462,9 @@ class _creditCardFormState extends State<creditCardForm> {
                         'Pink',
                         'Yellow',
                       ],
-                      label: "Card Type",
-                      popupItemDisabled: (String s) => s.startsWith('I'),
+                      label: "Color",
                       onChanged: (val) {
+                        db_SolidColor = val;
                         switch (val) {
                           case 'Red':
                             cardBg = new SolidColorCardBackground(Colors.red);
@@ -674,43 +540,47 @@ class _creditCardFormState extends State<creditCardForm> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    final cards = Boxes.getCards();
-                    // card c = new card(
-                    //   cardBackground: cardBg,
-                    //   cardNetworkType: cType,
-                    //   cardHolderName: hName.text,
-                    //   cardNumber: cNo.text,
-                    //   company: comName,
-                    //   validity: Validity(
-                    //     validThruMonth: validToMonth,
-                    //     validThruYear: validToYear,
-                    //     validFromMonth: validFromMonth,
-                    //     validFromYear: validToYear,
-                    //   ),
-                    //   cvvCode: cvv.text,
-                    // );
-                    var d = card(
-                      company: trying,
-                      cvvCode: cvv.text,
-                      cardNumber: cNo.text,
-                      cardNetworkType: cType.toString(),
-                      cardHolderName: hName.text,
-                      bgType: 2,
-                      gradient: selected,
-                      path: path,
-                      solid: "Red",
-                      validityFromMonth: 1,
-                      validityFromYear: 2001,
-                      validityToMonth: 1,
-                      validityToYear: 2022,
-                    );
-                    try {
-                      // Hive.box('cards').add(d);
-                      cards.add(d);
-                      print("card submitted");
-                      Navigator.of(context).pop();
-                    } catch (Exception) {
-                      print('error');
+                    final cards = Boxes.getCreditCards();
+                    if (db_companyCard == "" ||
+                        cvv.text.length < 3 ||
+                        cNo.text.length < 19 ||
+                        db_CardType == "" ||
+                        hName.text == "" ||
+                        _isVisible < 1 ||
+                        _isVisible > 3 ||
+                        validToYear < DateTime.now().year ||
+                        validToMonth < 0 ||
+                        validToMonth > 12 ||
+                        validFromMonth > 12 ||
+                        validFromMonth < 0 ||
+                        validFromYear < 0 ||
+                        validFromYear > DateTime.now().year) {
+                      Toast.show("Please provide all details or valid details",
+                          context,
+                          duration: 2, gravity: 0);
+                    } else {
+                      var d = card(
+                        company: db_companyCard,
+                        cvvCode: cvv.text,
+                        cardNumber: cNo.text,
+                        cardNetworkType: db_CardType,
+                        cardHolderName: hName.text,
+                        bgType: _isVisible,
+                        gradient: selected,
+                        path: path,
+                        solid: db_SolidColor,
+                        validityFromMonth: validFromMonth,
+                        validityFromYear: validFromYear,
+                        validityToMonth: validToMonth,
+                        validityToYear: validToYear,
+                      );
+                      try {
+                        cards.add(d);
+                        print("card submitted");
+                        Navigator.of(context).pop();
+                      } catch (Exception) {
+                        print('error');
+                      }
                     }
                   },
                   child: Container(
