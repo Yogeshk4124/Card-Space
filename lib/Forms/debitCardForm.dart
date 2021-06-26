@@ -1,9 +1,17 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:cardspace/Cards/cCard.dart';
+import 'package:cardspace/model/Boxes.dart';
+import 'package:cardspace/model/card.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multiselect/multiselect.dart';
+
 import '../CardClasses/mCard.dart';
 
 class debitCardForm extends StatefulWidget {
@@ -12,12 +20,180 @@ class debitCardForm extends StatefulWidget {
 }
 
 class _debitCardFormState extends State<debitCardForm> {
-  String validth = "";
+  String validth = "", validFrom = "";
+  int colorType = 0;
+  int _isVisible = 1;
+  var cardBg;
+  String path = "";
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
   TextEditingController cvv = new TextEditingController();
-  CardCompany comName = CardCompany.sbi;
-  CardNetworkType cType = CardNetworkType.visaBasic;
+
+  // CardCompany comName = CardCompany.sbi;
+  CardCompany comName;
+
+  // CardNetworkType cType = CardNetworkType.visaBasic;
+  CardNetworkType cType;
+  List<String> selected = [];
+  File _image;
+  final picker = ImagePicker();
+  int validFromYear = DateTime.now().year,
+      validFromMonth = DateTime.now().month,
+      validToYear = DateTime.now().year + 15,
+      validToMonth = DateTime.now().month;
+  String trying;
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        print("path to file:" + pickedFile.path);
+        path = pickedFile.path;
+        _image = File(pickedFile.path);
+        // Image.file(_image);
+        Uint8List bytes = _image.readAsBytesSync();
+        cardBg = new ImageCardBackground(MemoryImage(bytes));
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Widget getCardCompany(String val) {
+    trying = val;
+    switch (val) {
+      case "American Express":
+        return Text(
+          'AMERICAN \nEXPRESS',
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 16,
+          ),
+        );
+        break;
+      case 'Virgin':
+        return Image.asset(
+          'assets/cardslider/virgin.png',
+          height: 40,
+        );
+        break;
+      case 'SbiCard':
+        return Image.asset(
+          'assets/cardslider/sbi_card.gif',
+          height: 35,
+        );
+        break;
+      case 'SBI':
+        return Image.asset(
+          'assets/cardslider/sbi.png',
+          height: 35,
+        );
+        break;
+      case 'Kotak':
+        return Image.asset(
+          'assets/cardslider/kotak_logo.png',
+          height: 35,
+        );
+        break;
+      case 'Axis Bank':
+        return Image.asset(
+          'assets/cardslider/axis_bank_logo.png',
+          height: 35,
+        );
+        break;
+      case 'Axis Bank White':
+        return Image.asset(
+          'assets/cardslider/axis_bank_logo.png',
+          height: 35,
+          color: Colors.white,
+        );
+        break;
+      case 'CitiBank':
+        return Image.asset(
+          'assets/cardslider/citibank_logo.png',
+          height: 25,
+        );
+        break;
+      case 'HDFC':
+        return Image.asset(
+          'assets/cardslider/hdfc_logo.png',
+          height: 25,
+        );
+        break;
+      case 'HSBC':
+        return Image.asset(
+          'assets/cardslider/hsbc_logo.png',
+          height: 30,
+        );
+        break;
+      case 'icici':
+        return Image.asset(
+          'assets/cardslider/icici_bank_logo.png',
+          height: 25,
+        );
+        break;
+      case 'indusland':
+        return Image.asset(
+          'assets/cardslider/indusland.png',
+          height: 15,
+        );
+        break;
+      case 'YesBank':
+        return Image.asset(
+          'assets/cardslider/yes_bank_logo.png',
+          height: 35,
+        );
+        break;
+    }
+  }
+
+  Widget getNetworkType(String val) {
+    switch (val) {
+      case 'American Express':
+        return Image.asset(
+          'assets/flutter/amex.png',
+          height: 48,
+          width: 48,
+        );
+        break;
+      case 'Discover':
+        return Image.asset(
+          'assets/flutter/discover.png',
+          height: 48,
+          width: 48,
+        );
+        break;
+      case 'Mastercard':
+        return Image.asset(
+          'assets/cardslider/mastercard.png',
+          height: 40,
+        );
+        break;
+      case 'Visa':
+        return Image.asset(
+          'assets/cardslider/visa.jpeg',
+          height: 35,
+        );
+        break;
+      case 'Visa Basic':
+        return Image.asset(
+          'assets/cardslider/visa_basic.png',
+          height: 20,
+        );
+        break;
+      case 'Rupay':
+        return Image.asset(
+          'assets/cardslider/rupay_logo.png',
+          height: 40,
+        );
+        break;
+      case 'Other Brand':
+        return Container(height: 40, width: 40, child: Text('XYZ'));
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +206,22 @@ class _debitCardFormState extends State<debitCardForm> {
     hName.addListener(() {
       setState(() {});
     });
+    var DemoCard = cCard(
+      cardBackground: cardBg,
+      cardNetworkType: cType,
+      cardHolderName: hName.text,
+      cardNumber: cNo.text,
+      company: comName,
+      validity: Validity(
+        validThruMonth: validToMonth,
+        validThruYear: validToYear,
+        validFromMonth: validFromMonth,
+        validFromYear: validFromYear,
+      ),
+      showBackView: false,
+      cvvCode: cvv.text,
+    );
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -37,9 +229,9 @@ class _debitCardFormState extends State<debitCardForm> {
           scrollDirection: Axis.vertical,
           child: Container(
             height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: ListView(
+              // mainAxisSize: MainAxisSize.max,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,28 +247,19 @@ class _debitCardFormState extends State<debitCardForm> {
                       width: 15,
                     ),
                     Text(
-                      'Add Debit Card',
+                      'Add Credit Card',
                       style: GoogleFonts.roboto(fontSize: 22),
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Center(
-                  child: cCard(
-                    cardBackground:
-                    SolidColorCardBackground(Colors.white.withOpacity(0.6)),
-                    cardNetworkType: cType,
-                    cardHolderName: hName.text,
-                    cardNumber: cNo.text,
-                    company: comName,
-                    validity: Validity(
-                      validThruMonth: 1,
-                      validThruYear: 21,
-                      validFromMonth: 1,
-                      validFromYear: 16,
-                    ),
-                    showBackView: false,
-                    cvvCode: cvv.text,
-                  ),
+                  child: DemoCard,
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 TextField(
                   maxLines: 1,
@@ -101,6 +284,9 @@ class _debitCardFormState extends State<debitCardForm> {
                     prefixText: ' ',
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 DropdownSearch<String>(
                     mode: Mode.DIALOG,
                     showSelectedItem: true,
@@ -124,6 +310,7 @@ class _debitCardFormState extends State<debitCardForm> {
                     popupItemDisabled: (String s) => s.startsWith('I'),
                     onChanged: (val) {
                       setState(() {
+                        // comName = CardCompany(widget: getCardCompany(val));
                         switch (val) {
                           case "American Express":
                             comName = CardCompany.americanExpress;
@@ -169,55 +356,58 @@ class _debitCardFormState extends State<debitCardForm> {
                       });
                     },
                     selectedItem: 'SbiCard'),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
                       child: DropdownSearch<String>(
-                          mode: Mode.DIALOG,
-                          showSelectedItem: true,
-                          showSearchBox: true,
-                          items: [
-                            'American Express',
-                            'Discover',
-                            'Mastercard',
-                            'Visa',
-                            'Visa Basic',
-                            'Rupay',
-                            'Other Brand'
-                          ],
-                          label: "Card Type",
-                          popupItemDisabled: (String s) => s.startsWith('I'),
-                          onChanged: (val) {
-                            setState(
-                                  () {
-                                switch (val) {
-                                  case 'American Express':
-                                    cType = CardNetworkType.amex;
-                                    break;
-                                  case 'Discover':
-                                    cType = CardNetworkType.discover;
-                                    break;
-                                  case 'Mastercard':
-                                    cType = CardNetworkType.mastercard;
-                                    break;
-                                  case 'Visa':
-                                    cType = CardNetworkType.visa;
-                                    break;
-                                  case 'Visa Basic':
-                                    cType = CardNetworkType.visaBasic;
-                                    break;
-                                  case 'Rupay':
-                                    cType = CardNetworkType.rupay;
-                                    break;
-                                  case 'Other Brand':
-                                    cType = CardNetworkType.other;
-                                    break;
-                                }
-                              },
-                            );
-                          },
-                          selectedItem: 'Visa'),
+                        mode: Mode.DIALOG,
+                        showSelectedItem: true,
+                        showSearchBox: true,
+                        selectedItem: 'Visa',
+                        items: [
+                          'American Express',
+                          'Discover',
+                          'Mastercard',
+                          'Visa',
+                          'Visa Basic',
+                          'Rupay',
+                          'Other Brand'
+                        ],
+                        label: "Card Type",
+                        onChanged: (val) {
+                          // cType =
+                          // CardNetworkType(widget: getNetworkType('amex'));
+                          setState(() {
+                            switch (val) {
+                              case 'American Express':
+                                cType = CardNetworkType.amex;
+                                break;
+                              case 'Discover':
+                                cType = CardNetworkType.discover;
+                                break;
+                              case 'Mastercard':
+                                cType = CardNetworkType.mastercard;
+                                break;
+                              case 'Visa':
+                                cType = CardNetworkType.visa;
+                                break;
+                              case 'Visa Basic':
+                                cType = CardNetworkType.visaBasic;
+                                break;
+                              case 'Rupay':
+                                cType = CardNetworkType.rupay;
+                                break;
+                              case 'Other Brand':
+                                cType = CardNetworkType.other;
+                                break;
+                            }
+                          });
+                        },
+                      ),
                     ),
                     SizedBox(
                       width: 15,
@@ -249,6 +439,9 @@ class _debitCardFormState extends State<debitCardForm> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -269,17 +462,18 @@ class _debitCardFormState extends State<debitCardForm> {
                           labelStyle: TextStyle(color: Colors.white),
                         ),
                         onTap: () {
-                          print('clicked');
                           showDatePicker(
-                              currentDate: DateTime.now(),
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.utc(2000),
-                              lastDate: DateTime.utc(2050),
-                              context: context,
-                              initialDatePickerMode: DatePickerMode.year)
+                                  currentDate: DateTime.now(),
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime.utc(2000),
+                                  lastDate: DateTime.utc(2050),
+                                  context: context,
+                                  initialDatePickerMode: DatePickerMode.year)
                               .then((value) {
                             setState(() {
-                              validth = value.month.toString() +
+                              validFromMonth = value.month;
+                              validFromYear = value.year;
+                              validFrom = value.month.toString() +
                                   "/" +
                                   value.year.toString();
                             });
@@ -287,7 +481,7 @@ class _debitCardFormState extends State<debitCardForm> {
                         },
                         readOnly: true,
                         // enabled: false,
-                        controller: TextEditingController(text: validth),
+                        controller: TextEditingController(text: validFrom),
                       ),
                     ),
                     SizedBox(
@@ -310,16 +504,17 @@ class _debitCardFormState extends State<debitCardForm> {
                           labelStyle: TextStyle(color: Colors.white),
                         ),
                         onTap: () {
-                          print('clicked');
                           showDatePicker(
-                              currentDate: DateTime.now(),
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.utc(2000),
-                              lastDate: DateTime.utc(2050),
-                              context: context,
-                              initialDatePickerMode: DatePickerMode.year)
+                                  currentDate: DateTime.now(),
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime.utc(2000),
+                                  lastDate: DateTime.utc(2050),
+                                  context: context,
+                                  initialDatePickerMode: DatePickerMode.year)
                               .then((value) {
                             setState(() {
+                              validToMonth = value.month;
+                              validToYear = value.year;
                               validth = value.month.toString() +
                                   "/" +
                                   value.year.toString();
@@ -332,6 +527,9 @@ class _debitCardFormState extends State<debitCardForm> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 TextField(
                   controller: hName,
@@ -350,8 +548,171 @@ class _debitCardFormState extends State<debitCardForm> {
                     labelStyle: TextStyle(color: Colors.white),
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                DropdownSearch<String>(
+                    mode: Mode.DIALOG,
+                    showSelectedItem: true,
+                    showSearchBox: true,
+                    items: ['Solid', 'Linear', 'Image'],
+                    label: "Card Type",
+                    onChanged: (val) {
+                      setState(
+                        () {
+                          switch (val) {
+                            case 'Solid':
+                              colorType = 1;
+                              _isVisible = 1;
+                              setState(() {});
+                              break;
+                            case 'Linear':
+                              colorType = 2;
+                              _isVisible = 2;
+                              setState(() {});
+                              break;
+                            case 'Image':
+                              colorType = 3;
+                              _isVisible = 3;
+                              setState(() {});
+                              break;
+                          }
+                        },
+                      );
+                    },
+                    selectedItem: 'Solid'),
+                SizedBox(
+                  height: 10,
+                ),
+                Visibility(
+                  visible: _isVisible == 1,
+                  child: DropdownSearch<String>(
+                      mode: Mode.DIALOG,
+                      showSelectedItem: true,
+                      showSearchBox: true,
+                      items: [
+                        'Red',
+                        'White',
+                        'Pink',
+                        'Yellow',
+                      ],
+                      label: "Card Type",
+                      popupItemDisabled: (String s) => s.startsWith('I'),
+                      onChanged: (val) {
+                        switch (val) {
+                          case 'Red':
+                            cardBg = new SolidColorCardBackground(Colors.red);
+                            // setState(() {});
+                            break;
+                          case 'White':
+                            cardBg = new SolidColorCardBackground(Colors.white);
+                            // setState(() {});
+                            break;
+                          case 'Pink':
+                            cardBg = new SolidColorCardBackground(Colors.pink);
+                            // setState(() {});
+                            break;
+                          case 'Yellow':
+                            cardBg =
+                                new SolidColorCardBackground(Colors.yellow);
+                            // setState(() {});
+                            break;
+                        }
+                      },
+                      selectedItem: 'Red'),
+                ),
+                Visibility(
+                  visible: _isVisible == 2,
+                  child: DropDownMultiSelect(
+                    onChanged: (List<String> x) {
+                      selected = x;
+                      List<Color> colors = [];
+                      for (var i in selected) {
+                        colors.add(getColor(i));
+                      }
+                      cardBg = new GradientCardBackground(
+                          LinearGradient(colors: colors));
+                    },
+                    options: ['Red', 'Pink', 'White', 'Yellow'],
+                    selectedValues: selected,
+                    whenEmpty: 'Select Something',
+                  ),
+                ),
+                Visibility(
+                    visible: _isVisible == 3,
+                    child: GestureDetector(
+                      onTap: getImage,
+                      child: Container(
+                        height: 50,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            color: Colors.deepOrangeAccent,
+                            borderRadius: BorderRadius.circular(20)),
+                        alignment: Alignment.center,
+                        child: Text('Upload Image'),
+                      ),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.deepOrangeAccent,
+                        borderRadius: BorderRadius.circular(20)),
+                    alignment: Alignment.center,
+                    child: Text('View Color Changes'),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    final cards = Boxes.getCards();
+                    // card c = new card(
+                    //   cardBackground: cardBg,
+                    //   cardNetworkType: cType,
+                    //   cardHolderName: hName.text,
+                    //   cardNumber: cNo.text,
+                    //   company: comName,
+                    //   validity: Validity(
+                    //     validThruMonth: validToMonth,
+                    //     validThruYear: validToYear,
+                    //     validFromMonth: validFromMonth,
+                    //     validFromYear: validToYear,
+                    //   ),
+                    //   cvvCode: cvv.text,
+                    // );
+                    var d = card(
+                      company: trying,
+                      cvvCode: cvv.text,
+                      cardNumber: cNo.text,
+                      cardNetworkType: cType.toString(),
+                      cardHolderName: hName.text,
+                      bgType: 1,
+                      gradient: null,
+                      path: path,
+                      solid: "Red",
+                      validityFromMonth: 1,
+                      validityFromYear: 2001,
+                      validityToMonth: 1,
+                      validityToYear: 2022,
+                    );
+                    try {
+                      // Hive.box('cards').add(d);
+                      cards.add(d);
+                      print("card submitted");
+                      Navigator.of(context).pop();
+                    } catch (Exception) {
+                      print('error');
+                    }
+                  },
                   child: Container(
                     height: 50,
                     width: 100,
@@ -362,11 +723,33 @@ class _debitCardFormState extends State<debitCardForm> {
                     child: Text('Save Card'),
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Color getColor(String color) {
+    switch (color) {
+      case 'Red':
+        return Colors.red;
+        break;
+      case 'Yellow':
+        return Colors.yellow;
+        break;
+      case 'Pink':
+        return Colors.pink;
+        break;
+      case 'White':
+        return Colors.white;
+        break;
+      default:
+        return Colors.red;
+    }
   }
 }

@@ -1,8 +1,9 @@
+import 'package:cardspace/Sliders/CreditCardSlider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cardspace/Sliders/CreditCardSlider.dart';
-import '../Cards/cCard.dart';
+
 import '../CardClasses/mCard.dart';
+import '../Cards/cCard.dart';
 
 class debitcard extends StatefulWidget {
   dynamic sideMenuKey;
@@ -13,15 +14,16 @@ class debitcard extends StatefulWidget {
   _debitcardState createState() => _debitcardState();
 }
 
-class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
-  List<cCard> debitCards ;
+class _debitcardState extends State<debitcard> with TickerProviderStateMixin {
+  List<cCard> debitCards;
   @override
   void initState() {
     super.initState();
-    debitCards=[
+    debitCards = [
       cCard(
         // cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-        cardBackground: GradientCardBackground(LinearGradient(colors: [Colors.red,Colors.white])),
+        cardBackground: GradientCardBackground(
+            LinearGradient(colors: [Colors.red, Colors.white])),
         cardNetworkType: CardNetworkType.visaBasic,
         cardHolderName: 'The boring developer',
         cardNumber: '1234 1234 1234 1234',
@@ -52,6 +54,7 @@ class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
       ),
     ];
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +78,16 @@ class _debitcardState extends State<debitcard> with TickerProviderStateMixin{
                           _state.openSideMenu();
                       }),
                 ),
-                Text("Debit Cards",style: TextStyle(fontSize: 16),)
+                Text(
+                  "Debit Cards",
+                  style: TextStyle(fontSize: 16),
+                )
               ],
             ),
             Expanded(
               child: CreditCardSlider(
-                debitCards,repeatCards: RepeatCards.none,
+                debitCards,
+                repeatCards: RepeatCards.none,
               ),
             ),
           ],

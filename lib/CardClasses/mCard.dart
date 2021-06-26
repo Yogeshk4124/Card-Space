@@ -211,11 +211,11 @@ class CardNetworkType {
   );
 
   static CardNetworkType other = CardNetworkType(
-      Container(
-        height: 40,
-        width: 40,
-        child: Text('XYZ'),
-      ),
+    Container(
+      height: 40,
+      width: 40,
+      child: Text('XYZ'),
+    ),
   );
 
   final Widget widget;
@@ -607,10 +607,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
               child:TextField(
                 controller: cvvController,
                 decoration: InputDecoration(
-                  labelText: "CVV",
-                  labelStyle:GoogleFonts.aBeeZee(),
-                  disabledBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none
+                    labelText: "CVV",
+                    labelStyle:GoogleFonts.aBeeZee(),
+                    disabledBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none
                 ),
               ),
             )
@@ -619,14 +619,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         ),
         widget.cardHolderName != null
             ?  AutoSizeText(
-            widget.cardHolderName.toUpperCase(),
-            maxLines: 1,
-            minFontSize: 8,
-            style: TextStyle(
-              fontFamily: 'creditcard',
-              color: widget.cardHolderNameColor,
-              package: 'credit_card_slider',
-            ),
+          widget.cardHolderName.toUpperCase(),
+          maxLines: 1,
+          minFontSize: 8,
+          style: TextStyle(
+            fontFamily: 'creditcard',
+            color: widget.cardHolderNameColor,
+            package: 'credit_card_slider',
+          ),
         )
             : SizedBox.shrink(),
       ],
@@ -668,7 +668,3 @@ class AnimationCard extends StatelessWidget {
     );
   }
 }
-
-///
-/// Builds a back container containing cvv
-///

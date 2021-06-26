@@ -35,11 +35,19 @@ dependencies:
   #  credit_card_slider: ^1.0.1
 #  flutter_credit_card: ^2.0.0
   auto_size_text: ^2.1.0
+  multiselect: ^0.0.3
   flip_card: ^0.5.0
   dropdown_search: ^0.6.1
+  image_picker: ^0.8.0+3
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.0.4
+  hive_generator: ^1.1.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

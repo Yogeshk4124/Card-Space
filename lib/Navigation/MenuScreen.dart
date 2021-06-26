@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
@@ -14,6 +15,13 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   int option=1;
+  @override
+  void dispose(){
+    Hive.close();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SideMenu(
