@@ -33,6 +33,7 @@ dependencies:
   google_fonts: ^2.0.0
   sqflite: ^2.0.0+3
   toast: ^0.1.5
+  local_auth: ^1.1.6
 
   #  credit_card_slider: ^1.0.1
 #  flutter_credit_card: ^2.0.0

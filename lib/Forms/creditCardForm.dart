@@ -23,7 +23,7 @@ class creditCardForm extends StatefulWidget {
 class _creditCardFormState extends State<creditCardForm> {
   String validth = "", validFrom = "";
   int colorType = 0;
-  int _isVisible = 1;
+  int _isVisible = 0;
   var cardBg;
   String path = "";
   TextEditingController cNo = new TextEditingController();
@@ -594,7 +594,7 @@ class _creditCardFormState extends State<creditCardForm> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 50,
                 ),
               ],
             ),

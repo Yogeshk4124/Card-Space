@@ -55,7 +55,6 @@ class CardCompany {
     Image.asset(
       'assets/cardslider/axis_bank_logo.png',
       height: 35,
-
     ),
   );
 
@@ -153,7 +152,8 @@ class ImageCardBackground extends CardBackground {
   final ImageProvider imageProvider;
   final BoxFit boxFit;
 
-  ImageCardBackground(this.imageProvider, {
+  ImageCardBackground(
+    this.imageProvider, {
     this.boxFit = BoxFit.cover,
   });
 
@@ -194,21 +194,17 @@ class CardNetworkType {
     ),
   );
 
-  static CardNetworkType discover = CardNetworkType(
-      Image.asset(
-        'assets/flutter/discover.png',
-        height: 48,
-        width: 48,
-      )
-  );
+  static CardNetworkType discover = CardNetworkType(Image.asset(
+    'assets/flutter/discover.png',
+    height: 48,
+    width: 48,
+  ));
 
-  static CardNetworkType amex = CardNetworkType(
-      Image.asset(
-        'assets/flutter/amex.png',
-        height: 48,
-        width: 48,
-      )
-  );
+  static CardNetworkType amex = CardNetworkType(Image.asset(
+    'assets/flutter/amex.png',
+    height: 48,
+    width: 48,
+  ));
 
   static CardNetworkType other = CardNetworkType(
     Container(
@@ -223,6 +219,7 @@ class CardNetworkType {
   const CardNetworkType(this.widget);
 }
 
+// ignore: must_be_immutable
 class CreditCardWidget extends StatefulWidget {
   final CardBackground cardBackground;
   final CardNetworkType cardNetworkType;
@@ -278,11 +275,12 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
   Gradient backgroundGradientColor;
 
   bool isAmex = false;
-  TextEditingController cvvController=new TextEditingController();
+  TextEditingController cvvController = new TextEditingController();
   @override
   void initState() {
     super.initState();
-    cvvController.text=widget.cvvCode.toString();
+    cvvController.text = widget.cvvCode.toString();
+
     ///initialize the animation controller
     controller = AnimationController(
       duration: widget.animationDuration,
@@ -327,17 +325,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final Orientation orientation = MediaQuery
-        .of(context)
-        .orientation;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final Orientation orientation = MediaQuery.of(context).orientation;
 
     ///
     /// If uer adds CVV then toggle the card from front to back..
@@ -364,10 +354,12 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
     );
   }
 
-  Container buildBackContainer(double width,
-      double height,
-      BuildContext context,
-      Orientation orientation,) {
+  Container buildBackContainer(
+    double width,
+    double height,
+    BuildContext context,
+    Orientation orientation,
+  ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       width: 300,
@@ -392,10 +384,12 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
   //   return
   // }
 
-  Container buildFrontContainer(double width,
-      double height,
-      BuildContext context,
-      Orientation orientation,) {
+  Container buildFrontContainer(
+    double width,
+    double height,
+    BuildContext context,
+    Orientation orientation,
+  ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       width: 300,
@@ -407,9 +401,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         children: <Widget>[
           widget.company != null
               ? Align(
-            alignment: Alignment.centerLeft,
-            child: widget.company.widget,
-          )
+                  alignment: Alignment.centerLeft,
+                  child: widget.company.widget,
+                )
               : SizedBox.shrink(),
           widget.showChip ? _buildChip() : SizedBox.shrink(),
           Column(
@@ -429,21 +423,21 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
   _buildBackground() {
     if (widget.cardBackground is SolidColorCardBackground) {
       SolidColorCardBackground solidColorCardBackground =
-      widget.cardBackground as SolidColorCardBackground;
+          widget.cardBackground as SolidColorCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         color: solidColorCardBackground.backgroundColor,
       );
     } else if (widget.cardBackground is GradientCardBackground) {
       GradientCardBackground gradientCardBackground =
-      widget.cardBackground as GradientCardBackground;
+          widget.cardBackground as GradientCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         gradient: gradientCardBackground.gradient,
       );
     } else if (widget.cardBackground is ImageCardBackground) {
       ImageCardBackground imageCardBackground =
-      widget.cardBackground as ImageCardBackground;
+          widget.cardBackground as ImageCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         image: imageCardBackground.build(),
@@ -494,33 +488,31 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         widget.validity.validFromMonth != null ||
-            widget.validity.validFromYear != null
+                widget.validity.validFromYear != null
             ? Column(
-          children: <Widget>[
-            Text(
-              'VALID FROM',
-              style: TextStyle(
-                color: widget.validityColor,
-                fontSize: 8,
-              ),
-            ),
-            SizedBox(height: 2),
-            Text(
-              '${widget.validity.validFromMonth.toString().padLeft(
-                  2, '0')}/${widget.validity.validFromYear.toString().padLeft(
-                  2, '0')}',
-              style: TextStyle(
-                color: widget.validityColor,
-                fontSize: 10,
-                fontFamily: 'creditcard',
-                package: 'credit_card_slider',
-              ),
-            ),
-          ],
-        )
+                children: <Widget>[
+                  Text(
+                    'VALID FROM',
+                    style: TextStyle(
+                      color: widget.validityColor,
+                      fontSize: 8,
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    '${widget.validity.validFromMonth.toString().padLeft(2, '0')}/${widget.validity.validFromYear.toString().padLeft(2, '0')}',
+                    style: TextStyle(
+                      color: widget.validityColor,
+                      fontSize: 10,
+                      fontFamily: 'creditcard',
+                      package: 'credit_card_slider',
+                    ),
+                  ),
+                ],
+              )
             : SizedBox.shrink(),
         widget.validity.validFromMonth != null ||
-            widget.validity.validFromYear != null
+                widget.validity.validFromYear != null
             ? SizedBox(width: 24)
             : SizedBox.shrink(),
         Column(
@@ -534,9 +526,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
             ),
             SizedBox(height: 2),
             Text(
-              '${widget.validity.validThruMonth.toString().padLeft(
-                  2, '0')}/${widget.validity.validThruYear.toString().padLeft(
-                  2, '0')}',
+              '${widget.validity.validThruMonth.toString().padLeft(2, '0')}/${widget.validity.validThruYear.toString().padLeft(2, '0')}',
               style: TextStyle(
                 color: widget.validityColor,
                 fontSize: 10,
@@ -549,24 +539,25 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       ],
     );
   }
+
   _buildNameAndCardNetworkType() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         widget.cardHolderName != null
             ? Expanded(
-          flex: 3,
-          child: AutoSizeText(
-            widget.cardHolderName.toUpperCase(),
-            maxLines: 1,
-            minFontSize: 8,
-            style: TextStyle(
-              fontFamily: 'creditcard',
-              color: widget.cardHolderNameColor,
-              package: 'credit_card_slider',
-            ),
-          ),
-        )
+                flex: 3,
+                child: AutoSizeText(
+                  widget.cardHolderName.toUpperCase(),
+                  maxLines: 1,
+                  minFontSize: 8,
+                  style: TextStyle(
+                    fontFamily: 'creditcard',
+                    color: widget.cardHolderNameColor,
+                    package: 'credit_card_slider',
+                  ),
+                ),
+              )
             : SizedBox.shrink(),
         SizedBox(width: 16),
         Expanded(
@@ -582,16 +573,13 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            widget.company != null ?
-            widget.company.widget
-                : SizedBox.shrink(),
+            widget.company != null ? widget.company.widget : SizedBox.shrink(),
             SizedBox(width: 16),
             Expanded(
               child: _buildCardNetworkType(),
             )
           ],
         ),
-
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -604,30 +592,28 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
             Container(
               width: 50,
               height: 50,
-              child:TextField(
+              child: TextField(
                 controller: cvvController,
                 decoration: InputDecoration(
                     labelText: "CVV",
-                    labelStyle:GoogleFonts.aBeeZee(),
+                    labelStyle: GoogleFonts.aBeeZee(),
                     disabledBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none
-                ),
+                    enabledBorder: InputBorder.none),
               ),
             )
-
           ],
         ),
         widget.cardHolderName != null
-            ?  AutoSizeText(
-          widget.cardHolderName.toUpperCase(),
-          maxLines: 1,
-          minFontSize: 8,
-          style: TextStyle(
-            fontFamily: 'creditcard',
-            color: widget.cardHolderNameColor,
-            package: 'credit_card_slider',
-          ),
-        )
+            ? AutoSizeText(
+                widget.cardHolderName.toUpperCase(),
+                maxLines: 1,
+                minFontSize: 8,
+                style: TextStyle(
+                  fontFamily: 'creditcard',
+                  color: widget.cardHolderNameColor,
+                  package: 'credit_card_slider',
+                ),
+              )
             : SizedBox.shrink(),
       ],
     );

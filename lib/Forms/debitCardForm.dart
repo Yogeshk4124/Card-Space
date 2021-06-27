@@ -592,7 +592,7 @@ class _debitCardFormState extends State<debitCardForm> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 50,
                 ),
               ],
             ),

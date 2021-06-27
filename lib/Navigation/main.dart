@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return LiquidApp(
       materialApp: MaterialApp(
-        title: 'Liquid Shrink SideMenu',
+        title: 'Card Space',
         theme: ThemeData.dark(),
         home: SplashScreen(),
       ),

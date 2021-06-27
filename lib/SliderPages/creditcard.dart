@@ -24,68 +24,6 @@ class creditcard extends StatefulWidget {
 }
 
 class _creditcardState extends State<creditcard> {
-  // var _creditCards = [
-  //   cCard(
-  //     cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-  //     cardNetworkType: CardNetworkType.visaBasic,
-  //     cardHolderName: 'The boring developer',
-  //     cardNumber: '1234 1234 1234 1234',
-  //     company: CardCompany.yesBank,
-  //     validity: Validity(
-  //       validThruMonth: 1,
-  //       validThruYear: 21,
-  //       validFromMonth: 1,
-  //       validFromYear: 16,
-  //     ),
-  //     showBackView: false,
-  //     cvvCode: '1232',
-  //   ),
-  //   cCard(
-  //     cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-  //     cardNetworkType: CardNetworkType.visaBasic,
-  //     cardHolderName: 'The boring developer',
-  //     cardNumber: '1234 1234 1234 1234',
-  //     company: CardCompany.yesBank,
-  //     validity: Validity(
-  //       validThruMonth: 1,
-  //       validThruYear: 21,
-  //       validFromMonth: 1,
-  //       validFromYear: 16,
-  //     ),
-  //     showBackView: false,
-  //     cvvCode: '1232',
-  //   ),
-  //   cCard(
-  //     cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-  //     cardNetworkType: CardNetworkType.visaBasic,
-  //     cardHolderName: 'The boring developer',
-  //     cardNumber: '1234 1234 1234 1234',
-  //     company: CardCompany.yesBank,
-  //     validity: Validity(
-  //       validThruMonth: 1,
-  //       validThruYear: 21,
-  //       validFromMonth: 1,
-  //       validFromYear: 16,
-  //     ),
-  //     showBackView: false,
-  //     cvvCode: '1232',
-  //   ),
-  //   cCard(
-  //     cardBackground: SolidColorCardBackground(Colors.red.withOpacity(0.6)),
-  //     cardNetworkType: CardNetworkType.visaBasic,
-  //     cardHolderName: 'The boring developer',
-  //     cardNumber: '1234 1234 1234 1234',
-  //     company: CardCompany.yesBank,
-  //     validity: Validity(
-  //       validThruMonth: 1,
-  //       validThruYear: 21,
-  //       validFromMonth: 1,
-  //       validFromYear: 16,
-  //     ),
-  //     showBackView: false,
-  //     cvvCode: '1232',
-  //   ),
-  // ];
   Widget getNetworkType(String val) {
     switch (val) {
       case 'American Express':
