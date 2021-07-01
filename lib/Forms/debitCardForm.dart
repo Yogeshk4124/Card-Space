@@ -110,7 +110,7 @@ class _debitCardFormState extends State<debitCardForm> {
                       width: 15,
                     ),
                     Text(
-                      'Add Debit Card',
+                      'Add Credit Card',
                       style: GoogleFonts.roboto(fontSize: 22),
                     )
                   ],
@@ -174,6 +174,8 @@ class _debitCardFormState extends State<debitCardForm> {
                   onChanged: (val) {
                     setState(() {
                       // comName = CardCompany(widget: getCardCompany(val));
+                      db_companyCard = val;
+
                       switch (val) {
                         case "American Express":
                           comName = CardCompany.americanExpress;
@@ -242,6 +244,8 @@ class _debitCardFormState extends State<debitCardForm> {
                         ],
                         label: "Card Type",
                         onChanged: (val) {
+                          // cType =
+                          // CardNetworkType(widget: getNetworkType('amex'));
                           db_CardType = val;
                           setState(() {
                             switch (val) {
@@ -419,7 +423,6 @@ class _debitCardFormState extends State<debitCardForm> {
                   showSearchBox: true,
                   items: ['Solid', 'Linear', 'Image'],
                   label: "Card Background",
-                  selectedItem: 'Select Background Type',
                   onChanged: (val) {
                     setState(
                       () {
@@ -443,6 +446,7 @@ class _debitCardFormState extends State<debitCardForm> {
                       },
                     );
                   },
+                  selectedItem: 'Select Background Type',
                 ),
                 SizedBox(
                   height: 10,
@@ -460,7 +464,6 @@ class _debitCardFormState extends State<debitCardForm> {
                         'Yellow',
                       ],
                       label: "Color",
-                      popupItemDisabled: (String s) => s.startsWith('I'),
                       onChanged: (val) {
                         db_SolidColor = val;
                         switch (val) {

@@ -70,11 +70,11 @@ class _cCardState extends State<cCard> {
   }
 
   Container buildBackContainer(
-      double width,
-      double height,
-      BuildContext context,
-      Orientation orientation,
-      ) {
+    double width,
+    double height,
+    BuildContext context,
+    Orientation orientation,
+  ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       width: 300,
@@ -100,11 +100,11 @@ class _cCardState extends State<cCard> {
   // }
 
   Container buildFrontContainer(
-      double width,
-      double height,
-      BuildContext context,
-      Orientation orientation,
-      ) {
+    double width,
+    double height,
+    BuildContext context,
+    Orientation orientation,
+  ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       width: 300,
@@ -116,9 +116,9 @@ class _cCardState extends State<cCard> {
         children: <Widget>[
           widget.company != null
               ? Align(
-            alignment: Alignment.centerLeft,
-            child: widget.company.widget,
-          )
+                  alignment: Alignment.centerLeft,
+                  child: widget.company.widget,
+                )
               : SizedBox.shrink(),
           widget.showChip ? _buildChip() : SizedBox.shrink(),
           Column(
@@ -138,21 +138,21 @@ class _cCardState extends State<cCard> {
   _buildBackground() {
     if (widget.cardBackground is SolidColorCardBackground) {
       SolidColorCardBackground solidColorCardBackground =
-      widget.cardBackground as SolidColorCardBackground;
+          widget.cardBackground as SolidColorCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         color: solidColorCardBackground.backgroundColor,
       );
     } else if (widget.cardBackground is GradientCardBackground) {
       GradientCardBackground gradientCardBackground =
-      widget.cardBackground as GradientCardBackground;
+          widget.cardBackground as GradientCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         gradient: gradientCardBackground.gradient,
       );
     } else if (widget.cardBackground is ImageCardBackground) {
       ImageCardBackground imageCardBackground =
-      widget.cardBackground as ImageCardBackground;
+          widget.cardBackground as ImageCardBackground;
       return BoxDecoration(
         borderRadius: BorderRadius.circular(widget.roundedCornerRadius),
         image: imageCardBackground.build(),
@@ -200,29 +200,29 @@ class _cCardState extends State<cCard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         widget.validity.validFromMonth != null ||
-            widget.validity.validFromYear != null
+                widget.validity.validFromYear != null
             ? Column(
-          children: <Widget>[
-            Text(
-              'VALID FROM',
-              style: TextStyle(
-                color: widget.validityColor,
-                fontSize: 8,
-              ),
-            ),
-            SizedBox(height: 2),
-            Text(
-              '${widget.validity.validFromMonth.toString().padLeft(2, '0')}/${widget.validity.validFromYear.toString().padLeft(2, '0')}',
-              style: GoogleFonts.quantico(
-                fontSize: 11,
-                color: widget.validityColor,
-              ),
-            ),
-          ],
-        )
+                children: <Widget>[
+                  Text(
+                    'VALID FROM',
+                    style: TextStyle(
+                      color: widget.validityColor,
+                      fontSize: 8,
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    '${widget.validity.validFromMonth.toString().padLeft(2, '0')}/${widget.validity.validFromYear.toString().padLeft(2, '0')}',
+                    style: GoogleFonts.quantico(
+                      fontSize: 11,
+                      color: widget.validityColor,
+                    ),
+                  ),
+                ],
+              )
             : SizedBox.shrink(),
         widget.validity.validFromMonth != null ||
-            widget.validity.validFromYear != null
+                widget.validity.validFromYear != null
             ? SizedBox(width: 24)
             : SizedBox.shrink(),
         Column(
@@ -254,16 +254,16 @@ class _cCardState extends State<cCard> {
       children: <Widget>[
         widget.cardHolderName != null
             ? Expanded(
-          flex: 3,
-          child: AutoSizeText(
-            widget.cardHolderName.toUpperCase(),
-            maxLines: 1,
-            minFontSize: 8,
-            style: GoogleFonts.quantico(
-              color: widget.cardHolderNameColor,
-            ),
-          ),
-        )
+                flex: 3,
+                child: AutoSizeText(
+                  widget.cardHolderName.toUpperCase(),
+                  maxLines: 1,
+                  minFontSize: 8,
+                  style: GoogleFonts.quantico(
+                    color: widget.cardHolderNameColor,
+                  ),
+                ),
+              )
             : SizedBox.shrink(),
         SizedBox(width: 16),
         Expanded(
@@ -305,19 +305,20 @@ class _cCardState extends State<cCard> {
                     labelStyle: GoogleFonts.aBeeZee(),
                     disabledBorder: InputBorder.none,
                     enabledBorder: InputBorder.none),
+                enabled: false,
               ),
             )
           ],
         ),
         widget.cardHolderName != null
             ? AutoSizeText(
-          widget.cardHolderName.toUpperCase(),
-          maxLines: 1,
-          minFontSize: 8,
-          style: GoogleFonts.quantico(
-            color: widget.cardHolderNameColor,
-          ),
-        )
+                widget.cardHolderName.toUpperCase(),
+                maxLines: 1,
+                minFontSize: 8,
+                style: GoogleFonts.quantico(
+                  color: widget.cardHolderNameColor,
+                ),
+              )
             : SizedBox.shrink(),
       ],
     );
