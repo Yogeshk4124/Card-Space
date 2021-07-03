@@ -6,7 +6,7 @@
 
 A secured cross-platfom application that allows the user to save their cards like (Bank cards, Personal Identification Cards, etc) in a highly secured format. These card can be viewed by user anytime. The main problem it solves is that the user does not need to carry all the card while he can carry a single mobile phone with our installed.
 
-Take control of your credit cards with this offline credit card manager (no need to create account or login online).It makes car management smart, simple and secure.
+Take control of your cards with this offline card manager (no need to create account or login online).It makes card management smart, simple and secure.
 <br>
 
 <!-- ### APK -->
