@@ -1,18 +1,16 @@
-import 'package:cardspace/Cards/cCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dropdown_search/dropdown_search.dart';
-import '../CardClasses/mCard.dart';
 
 class otherCardForm extends StatefulWidget {
+  dynamic sideMenuKey;
+
+  otherCardForm({@required this.sideMenuKey});
   @override
   _otherCardFormState createState() => _otherCardFormState();
 }
 
 class _otherCardFormState extends State<otherCardForm> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +22,15 @@ class _otherCardFormState extends State<otherCardForm> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
+                    iconSize: 25,
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      final _state = widget.sideMenuKey.currentState;
+                      if (_state.isOpened)
+                        _state.closeSideMenu();
+                      else
+                        _state.openSideMenu();
+                    }),
                 SizedBox(
                   width: 15,
                 ),
@@ -39,8 +40,17 @@ class _otherCardFormState extends State<otherCardForm> {
                 )
               ],
             ),
-            Expanded(child:Icon(CupertinoIcons.burn,size:200,color: Colors.red,)),
-            Expanded(child:Text('Feature not implemented yet',style: TextStyle(fontSize: 20),)),
+            Expanded(
+                child: Icon(
+              CupertinoIcons.burn,
+              size: 200,
+              color: Colors.red,
+            )),
+            Expanded(
+                child: Text(
+              'Feature not implemented yet',
+              style: TextStyle(fontSize: 20),
+            )),
           ],
         ),
       ),

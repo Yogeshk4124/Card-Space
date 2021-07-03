@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class identificationCardsForm extends StatefulWidget {
+  dynamic sideMenuKey;
+
+  identificationCardsForm({@required this.sideMenuKey});
   @override
   _identificationCardsFormState createState() =>
       _identificationCardsFormState();
@@ -21,12 +24,15 @@ class _identificationCardsFormState extends State<identificationCardsForm> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
+                    iconSize: 25,
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      final _state = widget.sideMenuKey.currentState;
+                      if (_state.isOpened)
+                        _state.closeSideMenu();
+                      else
+                        _state.openSideMenu();
+                    }),
                 Text(
                   'Add Identification Card',
                   style: GoogleFonts.roboto(fontSize: 22),

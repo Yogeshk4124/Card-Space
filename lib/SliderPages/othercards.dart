@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class othercards extends StatefulWidget {
-  dynamic sideMenuKey;
-
-  othercards({@required this.sideMenuKey});
-
   @override
   _othercardsState createState() => _othercardsState();
 }
@@ -15,6 +12,7 @@ class _othercardsState extends State<othercards> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,21 +26,39 @@ class _othercardsState extends State<othercards> {
                 Padding(
                   padding: EdgeInsets.only(left: 12),
                   child: IconButton(
-                      iconSize: 25,
-                      icon: Icon(Icons.menu),
-                      onPressed: () {
-                        final _state = widget.sideMenuKey.currentState;
-                        if (_state.isOpened)
-                          _state.closeSideMenu();
-                        else
-                          _state.openSideMenu();
-                      }),
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-                Text("Others Cards",style: TextStyle(fontSize: 16),)
+                Text(
+                  "Others Cards",
+                  style: TextStyle(fontSize: 16),
+                )
               ],
             ),
-            Expanded(child:Icon(CupertinoIcons.burn,size:MediaQuery.of(context).size.width*0.5,color: Colors.red,)),
-            Expanded(child:Text('Feature not implemented yet',style: TextStyle(fontSize: 20),)),
+            Expanded(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      CupertinoIcons.square_stack_3d_up_slash_fill,
+                      size: MediaQuery.of(context).size.width * .30,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'No Card Found',
+                      style: GoogleFonts.courierPrime(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

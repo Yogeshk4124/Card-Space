@@ -16,6 +16,10 @@ import 'package:toast/toast.dart';
 import '../CardClasses/mCard.dart';
 
 class debitCardForm extends StatefulWidget {
+  dynamic sideMenuKey;
+
+  debitCardForm({@required this.sideMenuKey});
+
   @override
   _debitCardFormState createState() => _debitCardFormState();
 }
@@ -24,7 +28,8 @@ class _debitCardFormState extends State<debitCardForm> {
   String validth = "", validFrom = "";
   int colorType = 0;
   int _isVisible = 0;
-  var cardBg;
+  CardBackground cardBg =
+      GradientCardBackground(LinearGradient(colors: [Colors.red, Colors.pink]));
   String path = "";
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
@@ -100,17 +105,20 @@ class _debitCardFormState extends State<debitCardForm> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                        iconSize: 25,
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          final _state = widget.sideMenuKey.currentState;
+                          if (_state.isOpened)
+                            _state.closeSideMenu();
+                          else
+                            _state.openSideMenu();
+                        }),
                     SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'Add Credit Card',
+                      'Add Debit Card',
                       style: GoogleFonts.roboto(fontSize: 22),
                     )
                   ],

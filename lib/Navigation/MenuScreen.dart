@@ -7,20 +7,18 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'PageProvider.dart';
 
 class MenuScreen extends StatefulWidget {
-
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }
 
 class _MenuScreenState extends State<MenuScreen> {
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
-  int option=1;
+  int option = 1;
   @override
-  void dispose(){
+  void dispose() {
     Hive.close();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class _MenuScreenState extends State<MenuScreen> {
       // background: Color(0xff041955),
       background: Colors.deepOrangeAccent,
       type: SideMenuType.slideNRotate,
-      child: page(option,_sideMenuKey),
+      child: page(option, _sideMenuKey),
     );
   }
 
@@ -52,7 +50,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "\l.lead{Hello},\n\l.lead.bold{Yogesh}",
+                  // "\l.lead{Hello},\n\l.lead.bold{}",
+                  "\l.lead{Hello},",
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
@@ -64,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=1;
+                option = 1;
               });
             },
             leading: Icon(Icons.home, size: 20.0, color: Colors.white),
@@ -77,10 +76,11 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=2;
+                option = 2;
               });
             },
-            leading: Icon( Icons.credit_card_outlined, size: 20.0, color: Colors.white),
+            leading: Icon(Icons.credit_card_outlined,
+                size: 20.0, color: Colors.white),
             title: Text("Credit Cards"),
             textColor: Colors.white,
             dense: true,
@@ -91,11 +91,11 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=3;
+                option = 3;
               });
             },
-            leading:
-            Icon( CupertinoIcons.creditcard_fill, size: 20.0, color: Colors.white),
+            leading: Icon(CupertinoIcons.creditcard_fill,
+                size: 20.0, color: Colors.white),
             title: Text("Debit Cards"),
             textColor: Colors.white,
             dense: true,
@@ -106,11 +106,11 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=4;
+                option = 4;
               });
-
             },
-            leading: Icon(Icons.person_pin_sharp, size: 20.0, color: Colors.white),
+            leading:
+                Icon(Icons.person_pin_sharp, size: 20.0, color: Colors.white),
             title: Text("Identification Cards"),
             textColor: Colors.white,
             dense: true,
@@ -121,10 +121,10 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=5;
+                option = 5;
               });
             },
-            leading: Icon(    Icons.perm_identity, size: 20.0, color: Colors.white),
+            leading: Icon(Icons.perm_identity, size: 20.0, color: Colors.white),
             title: Text("Organization Cards"),
             textColor: Colors.white,
             dense: true,
@@ -135,10 +135,13 @@ class _MenuScreenState extends State<MenuScreen> {
             onTap: () {
               setState(() {
                 _sideMenuKey.currentState.closeSideMenu();
-                option=6;
+                option = 6;
               });
             },
-            leading: Icon( CupertinoIcons.rectangle_fill_on_rectangle_angled_fill, size: 20.0, color: Colors.white),
+            leading: Icon(
+                CupertinoIcons.rectangle_fill_on_rectangle_angled_fill,
+                size: 20.0,
+                color: Colors.white),
             title: Text("Other Cards"),
             textColor: Colors.white,
             dense: true,

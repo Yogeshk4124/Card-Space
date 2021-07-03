@@ -16,6 +16,10 @@ import '../model/Boxes.dart';
 import '../model/card.dart';
 
 class creditCardForm extends StatefulWidget {
+  dynamic sideMenuKey;
+
+  creditCardForm({@required this.sideMenuKey});
+
   @override
   _creditCardFormState createState() => _creditCardFormState();
 }
@@ -24,7 +28,8 @@ class _creditCardFormState extends State<creditCardForm> {
   String validth = "", validFrom = "";
   int colorType = 0;
   int _isVisible = 0;
-  var cardBg;
+  CardBackground cardBg =
+      GradientCardBackground(LinearGradient(colors: [Colors.red, Colors.pink]));
   String path = "";
   TextEditingController cNo = new TextEditingController();
   TextEditingController hName = new TextEditingController();
@@ -99,12 +104,15 @@ class _creditCardFormState extends State<creditCardForm> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                        iconSize: 25,
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          final _state = widget.sideMenuKey.currentState;
+                          if (_state.isOpened)
+                            _state.closeSideMenu();
+                          else
+                            _state.openSideMenu();
+                        }),
                     SizedBox(
                       width: 15,
                     ),

@@ -1,9 +1,9 @@
+import 'package:cardspace/Forms/creditCardForm.dart';
+import 'package:cardspace/Forms/debitCardForm.dart';
+import 'package:cardspace/Forms/identificationCardsForm.dart';
+import 'package:cardspace/Forms/organizationCardForm.dart';
+import 'package:cardspace/Forms/otherCardForm.dart';
 import 'package:cardspace/Navigation/HomeScreen.dart';
-import 'package:cardspace/SliderPages/creditcard.dart';
-import 'package:cardspace/SliderPages/debitcard.dart';
-import 'package:cardspace/SliderPages/identificationcards.dart';
-import 'package:cardspace/SliderPages/organizationcards.dart';
-import 'package:cardspace/SliderPages/othercards.dart';
 import 'package:flutter/cupertino.dart';
 
 Widget page(int x, dynamic sideMenuKey) {
@@ -12,19 +12,19 @@ Widget page(int x, dynamic sideMenuKey) {
       return HomeScreen(sideMenuKey: sideMenuKey);
       break;
     case 2:
-      return creditcard(sideMenuKey: sideMenuKey);
+      return creditCardForm(sideMenuKey: sideMenuKey);
       break;
     case 3:
-      return debitcard(sideMenuKey: sideMenuKey);
+      return debitCardForm(sideMenuKey: sideMenuKey);
       break;
     case 4:
-      return identificationcards(sideMenuKey: sideMenuKey);
+      return identificationCardsForm(sideMenuKey: sideMenuKey);
       break;
     case 5:
-      return organizationcards(sideMenuKey: sideMenuKey);
+      return organizationCardForm(sideMenuKey: sideMenuKey);
       break;
     case 6:
-      return othercards(sideMenuKey: sideMenuKey);
+      return otherCardForm(sideMenuKey: sideMenuKey);
       break;
     default:
       return HomeScreen(sideMenuKey: sideMenuKey);

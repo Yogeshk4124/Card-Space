@@ -15,147 +15,78 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../Cards/cCard.dart';
 
 class creditcard extends StatefulWidget {
-  dynamic sideMenuKey;
-
-  creditcard({@required this.sideMenuKey});
-
   @override
   _creditcardState createState() => _creditcardState();
 }
 
 class _creditcardState extends State<creditcard> {
-  Widget getNetworkType(String val) {
+  CardNetworkType getNetworkType(String val) {
     switch (val) {
       case 'American Express':
-        return Image.asset(
-          'assets/flutter/amex.png',
-          height: 48,
-          width: 48,
-        );
+        return CardNetworkType.amex;
         break;
       case 'Discover':
-        return Image.asset(
-          'assets/flutter/discover.png',
-          height: 48,
-          width: 48,
-        );
+        return CardNetworkType.discover;
         break;
       case 'Mastercard':
-        return Image.asset(
-          'assets/cardslider/mastercard.png',
-          height: 40,
-        );
+        return CardNetworkType.mastercard;
         break;
       case 'Visa':
-        return Image.asset(
-          'assets/cardslider/visa.jpeg',
-          height: 35,
-        );
+        return CardNetworkType.visa;
         break;
       case 'Visa Basic':
-        return Image.asset(
-          'assets/cardslider/visa_basic.png',
-          height: 20,
-        );
+        return CardNetworkType.visaBasic;
         break;
       case 'Rupay':
-        return Image.asset(
-          'assets/cardslider/rupay_logo.png',
-          height: 40,
-        );
+        return CardNetworkType.rupay;
         break;
       case 'Other Brand':
-        return Container(height: 40, width: 40, child: Text('XYZ'));
+        return CardNetworkType.other;
         break;
     }
   }
 
-  Widget getCardCompany(String val) {
+  CardCompany getCardCompany(String val) {
     print("card Company:" + val);
     switch (val) {
       case "American Express":
-        return Text(
-          'AMERICAN \nEXPRESS',
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-            fontSize: 16,
-          ),
-        );
+        return CardCompany.americanExpress;
         break;
       case 'Virgin':
-        return Image.asset(
-          'assets/cardslider/virgin.png',
-          height: 40,
-        );
+        return CardCompany.virgin;
         break;
       case 'SbiCard':
-        return Image.asset(
-          'assets/cardslider/sbi_card.gif',
-          height: 35,
-        );
+        return CardCompany.sbiCard;
         break;
       case 'SBI':
-        return Image.asset(
-          'assets/cardslider/sbi.png',
-          height: 35,
-        );
+        return CardCompany.sbi;
         break;
       case 'Kotak':
-        return Image.asset(
-          'assets/cardslider/kotak_logo.png',
-          height: 35,
-        );
+        return CardCompany.kotak;
         break;
       case 'Axis Bank':
-        return Image.asset(
-          'assets/cardslider/axis_bank_logo.png',
-          height: 35,
-        );
+        return CardCompany.axisBank;
         break;
       case 'Axis Bank White':
-        return Image.asset(
-          'assets/cardslider/axis_bank_logo.png',
-          height: 35,
-          color: Colors.white,
-        );
+        return CardCompany.axisBankWhite;
         break;
       case 'CitiBank':
-        return Image.asset(
-          'assets/cardslider/citibank_logo.png',
-          height: 25,
-        );
+        return CardCompany.citiBank;
         break;
       case 'HDFC':
-        return Image.asset(
-          'assets/cardslider/hdfc_logo.png',
-          height: 25,
-        );
+        return CardCompany.hdfc;
         break;
       case 'HSBC':
-        return Image.asset(
-          'assets/cardslider/hsbc_logo.png',
-          height: 30,
-        );
+        return CardCompany.hsbc;
         break;
       case 'icici':
-        return Image.asset(
-          'assets/cardslider/icici_bank_logo.png',
-          height: 25,
-        );
+        return CardCompany.icici;
         break;
       case 'indusland':
-        return Image.asset(
-          'assets/cardslider/indusland.png',
-          height: 15,
-        );
+        return CardCompany.indusland;
         break;
       case 'YesBank':
-        return Image.asset(
-          'assets/cardslider/yes_bank_logo.png',
-          height: 35,
-        );
+        return CardCompany.yesBank;
         break;
     }
   }
@@ -246,15 +177,12 @@ class _creditcardState extends State<creditcard> {
                 Padding(
                   padding: EdgeInsets.only(left: 12),
                   child: IconButton(
-                      iconSize: 25,
-                      icon: Icon(Icons.menu),
-                      onPressed: () {
-                        final _state = widget.sideMenuKey.currentState;
-                        if (_state.isOpened)
-                          _state.closeSideMenu();
-                        else
-                          _state.openSideMenu();
-                      }),
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
                 Text(
                   "Credit Cards",
