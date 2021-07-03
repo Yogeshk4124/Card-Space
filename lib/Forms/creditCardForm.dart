@@ -585,7 +585,8 @@ class _creditCardFormState extends State<creditCardForm> {
                       try {
                         cards.add(d);
                         print("card submitted");
-                        Navigator.of(context).pop();
+                        Toast.show("Card Saved", context,
+                            duration: 2, gravity: 0);
                       } catch (Exception) {
                         print('error');
                       }
