@@ -31,8 +31,6 @@ Take control of your credit cards with this offline credit card manager (no need
 
 ## Screenshots
 
-<hr>
-
 ### Mobile
 
 <img src="./screenshots/1.png" height="400em" /> <img src="./screenshots/2.png" height="400em" /> <img src="./screenshots/3.png" height="400em" /> <img src="./screenshots/4.png" height="400em" /> <img src="./screenshots/5.png" height="400em" />
