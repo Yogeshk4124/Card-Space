@@ -9,14 +9,14 @@ A secured cross-platfom application that allows the user to save their cards lik
 Take control of your cards with this offline card manager (no need to create account or login online).It makes card management smart, simple and secure.
 <br>
 
-<!-- ### APK -->
+### APK
 
-<!-- [⬇️ Download apk here](https://github.com/Yogeshk4124/SyncPlayer/blob/main/APK/SyncPlayer.apk?raw=true) -->
+[⬇️ Download apk here](https://github.com/Yogeshk4124/Card-Space/blob/main/apk/app.apk?raw=true)
 
 ## Some Features
 
 - Secure.
-- Works Offline.No privacy leaks.
+- Works Offline. No privacy leaks.
 - Modern design.
 - Easy to use.
 - Make your own custom cards.
@@ -60,6 +60,7 @@ I welcome and encourage all pull requests. Here are some basic rules to follow t
 **Step 1:**
 
 Download or clone this repo by using the link below:
+
 ```
 
 https://github.com/Yogeshk4124/Card-Space.git
@@ -105,4 +106,3 @@ For more contact me @[Gmail](mailto::yogeshk4124@gmail.com),
 ## Facing Any Problem or need any Help:grey_question:
 
 Incase you need any problem or need any help write me in [issues](https://github.com/Yogeshk4124/Card-Space/issues) section.
-
