@@ -132,7 +132,7 @@ class _creditcardState extends State<creditcard> {
       //   skip++;
       //   continue;
       // }
-      print('success:' + i.cardNumber);
+      print('success:' + i.company);
 
       cCard d = cCard(
         cardBackground: i.bgType == 1
@@ -140,13 +140,10 @@ class _creditcardState extends State<creditcard> {
             : i.bgType == 2
                 ? GradientCardBackground(getGradient(i.gradient))
                 : ImageCardBackground(getImage(i.path)),
-        cardNetworkType:
-            // CardNetworkType(widget: getNetworkType(i.cardNetworkType)),
-            CardNetworkType.visaBasic,
+        cardNetworkType: CardNetworkType.visaBasic,
         cardHolderName: i.cardHolderName,
         cardNumber: i.cardNumber,
-        // company: CardCompany(widget: getCardCompany(i.company.toString())),
-        company: CardCompany.indusland,
+        company: getCardCompany(i.company.toString()),
         validity: Validity(
           validThruMonth: i.validityToMonth,
           validThruYear: i.validityToYear,

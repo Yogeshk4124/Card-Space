@@ -182,15 +182,15 @@ class _creditCardFormState extends State<creditCardForm> {
                     setState(() {
                       // comName = CardCompany(widget: getCardCompany(val));
                       db_companyCard = val;
-
+                      print("updating db_com:" + db_companyCard);
                       switch (val) {
                         case "American Express":
                           comName = CardCompany.americanExpress;
                           break;
-                        case "Axis Bank":
+                        case 'Axis Bank':
                           comName = CardCompany.axisBank;
                           break;
-                        case "Axis Bank White":
+                        case 'Axis Bank White':
                           comName = CardCompany.axisBankWhite;
                           break;
                         case 'CitiBank':
@@ -206,7 +206,6 @@ class _creditCardFormState extends State<creditCardForm> {
                           comName = CardCompany.icici;
                           break;
                         case 'indusland':
-                          print('here');
                           comName = CardCompany.indusland;
                           break;
                         case 'Kotak':
