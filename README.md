@@ -105,4 +105,4 @@ For more contact me @[Gmail](mailto::yogeshk4124@gmail.com),
 
 ## Facing Any Problem or need any Help:grey_question:
 
-Incase you need any problem or need any help write me in [issues](https://github.com/Yogeshk4124/Card-Space/issues) section.
+Incase you face any problem or need any help write me in [issues](https://github.com/Yogeshk4124/Card-Space/issues) section.
