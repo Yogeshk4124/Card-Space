@@ -35,6 +35,40 @@ Take control of your cards with this offline card manager (no need to create acc
 
 <img src="./screenshots/1.png" height="400em" /> <img src="./screenshots/2.png" height="400em" /> <img src="./screenshots/3.png" height="400em" /> <img src="./screenshots/4.png" height="400em" /> <img src="./screenshots/5.png" height="400em" />
 
+## Project setup
+
+**Step 1:**
+
+Download or clone this repo by using the link below:
+
+```
+https://github.com/Yogeshk4124/Card-Space.git
+```
+
+**Step 2:**
+
+Go to project root and execute the following command in console to get the required dependencies:
+
+```
+flutter pub get
+```
+
+**Step 3:**
+
+Run the project in Android Studio or any IDE you prefer or run the command:
+
+```
+flutter run <DART_FILE> or Run the project in android studio
+```
+
+**Step 4:**
+
+To build the flutter project:
+
+```
+flutter build
+```
+
 ## Pull Requests
 
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:
@@ -54,48 +88,6 @@ I welcome and encourage all pull requests. Here are some basic rules to follow t
 3. Commit your changes (git commit -m 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request<br>
-
-## Project setup
-
-**Step 1:**
-
-Download or clone this repo by using the link below:
-
-```
-
-https://github.com/Yogeshk4124/Card-Space.git
-
-```
-
-**Step 2:**
-
-Go to project root and execute the following command in console to get the required dependencies:
-
-```
-
-flutter pub get
-
-```
-
-**Step 3:**
-
-Run the project in Android Studion or whichever IDE you prefer or run the command:
-
-```
-
-flutter run <DART_FILE> or Run the project in android studio
-
-```
-
-**Step 4:**
-
-To build the flutter project:
-
-```
-
-flutter build
-
-```
 
 ### Show some :heart: and star the repository to support the project
 
