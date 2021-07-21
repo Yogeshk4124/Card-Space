@@ -1,4 +1,4 @@
-<p align="center"><img src="https://media.discordapp.net/attachments/803336869844353026/860985589180006410/unknown.png" width=300  align="center"></p>
+<p align="center"><img src="./screenshots/CardSpaceLogo.png" width=300  align="center"></p>
 <h1 align="center">Cardspace</h1>
 <p align="center"><img align="center" src="https://travis-ci.com/travis-ci/travis-web.svg?branch=master&amp;status=passed" alt="build:passed"></p>
 
